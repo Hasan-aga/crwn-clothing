@@ -1,4 +1,3 @@
-import "./categories.styles.scss";
 import CategoryMenu from "./components/directory/directory-menu.component";
 
 const App = () => {
