@@ -20,12 +20,14 @@ const App = () => {
     {
       id: 4,
       title: "womens",
-      imageUrl: "https://i.ibb.co/GCCdy8t/womens.png",
+      imageUrl:
+        "https://images.unsplash.com/photo-1598923926169-898afb437ed4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
     },
     {
       id: 5,
       title: "mens",
-      imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
+      imageUrl:
+        "https://images.unsplash.com/photo-1620921597945-908e7947c41f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1634&q=80",
     },
   ];
   return (
