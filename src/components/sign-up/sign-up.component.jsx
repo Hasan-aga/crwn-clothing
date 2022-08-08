@@ -31,8 +31,7 @@ const SignupForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (formFields.password !== formFields.confirmPassword) {
-      console.error(`passwords dont match`);
-      return;
+      throw new Error(`passwords dont match`);
     }
 
     console.log("formFields", formFields);
@@ -47,6 +46,8 @@ const SignupForm = () => {
       });
       resetForm();
     } catch (error) {
+      if (error.code === "auth/email-already-in-use")
+        alert("email already in use!");
       console.error(`failed to authenticate, ${error}`);
     }
   };
