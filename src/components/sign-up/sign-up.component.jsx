@@ -17,6 +17,10 @@ const defaultFormFields = {
 const SignupForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
 
+  const resetForm = () => {
+    setFormFields(defaultFormFields);
+  };
+
   const handleForm = (event) => {
     const { name, value } = event.target;
     formFields[name] = value;
@@ -41,6 +45,7 @@ const SignupForm = () => {
       const userDocRef = await createUserDocumentFromAuth(user, {
         displayName: formFields.displayName,
       });
+      resetForm();
     } catch (error) {
       console.error(`failed to authenticate, ${error}`);
     }
@@ -56,10 +61,17 @@ const SignupForm = () => {
           type="text"
           name="displayName"
           onChange={handleForm}
+          value={formFields.displayName}
         ></input>
 
         <label>Email</label>
-        <input required type="email" name="email" onChange={handleForm}></input>
+        <input
+          required
+          type="email"
+          name="email"
+          onChange={handleForm}
+          value={formFields.email}
+        ></input>
 
         <label>Password</label>
         <input
@@ -67,6 +79,7 @@ const SignupForm = () => {
           type="password"
           name="password"
           onChange={handleForm}
+          value={formFields.password}
         ></input>
         <label>Confirm Password</label>
         <input
@@ -74,6 +87,7 @@ const SignupForm = () => {
           type="password"
           name="confirmPassword"
           onChange={handleForm}
+          value={formFields.confirmPassword}
         ></input>
         <button className="sign-up" type="submit">
           Sign Up
