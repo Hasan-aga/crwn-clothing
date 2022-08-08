@@ -22,9 +22,9 @@ const Navigation = () => {
               </Link>
             </li>
             <li>
-              <a className="link" href="/shop">
-                Shop
-              </a>
+              <Link className="link" to="/signin">
+                Sign In
+              </Link>
             </li>
           </ul>
         </div>
