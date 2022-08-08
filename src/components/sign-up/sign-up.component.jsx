@@ -1,6 +1,11 @@
 import "./sign-up.style.scss";
 import { Outlet } from "react-router-dom";
 import { useState } from "react";
+import {
+  addUserToAuthByEmailAndPassword,
+  createUserDocumentFromAuth,
+  auth,
+} from "../../utils/firebase/firebase.util";
 
 const defaultFormFields = {
   displayName: "",
@@ -19,10 +24,31 @@ const SignupForm = () => {
     console.log(formFields);
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (formFields.password !== formFields.confirmPassword) {
+      console.error(`passwords dont match`);
+      return;
+    }
+
+    console.log("formFields", formFields);
+    try {
+      const { user } = await addUserToAuthByEmailAndPassword(
+        auth,
+        formFields.email,
+        formFields.password
+      );
+      user.displayName = formFields.displayName;
+      const userDocRef = await createUserDocumentFromAuth(user);
+    } catch (error) {
+      console.error(`failed to authenticate, ${error}`);
+    }
+  };
+
   return (
     <div className="signup-form">
       <h2>Sign up with Email and Password</h2>
-      <form onSubmit={() => {}}>
+      <form onSubmit={handleSubmit}>
         <label>Display Name</label>
         <input
           required
