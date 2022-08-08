@@ -5,6 +5,12 @@
   margin-top: 10px;
   margin-bottom: 20px;
   background-color: #f7f7f7;
+  .logo {
+    fill: black;
+    width: 80px;
+    height: 80px;
+  }
+
   .links {
     display: flex;
     gap: 10px;
