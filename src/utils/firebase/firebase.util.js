@@ -31,7 +31,10 @@ export const signInWithPop = () => signInWithPopup(auth, provider);
 
 export const db = getFirestore();
 
-export const createUserDocumentFromAuth = async (userAuth) => {
+export const createUserDocumentFromAuth = async (
+  userAuth,
+  addtionaInformation = {}
+) => {
   const userDocRef = doc(db, "users", userAuth.uid);
   const userData = await getDoc(userDocRef);
   console.log(userData.exists());
@@ -48,7 +51,12 @@ export const createUserDocumentFromAuth = async (userAuth) => {
   console.log("user does not exists, creating new user", displayName, email);
 
   try {
-    await setDoc(userDocRef, { displayName, email, createdAt });
+    await setDoc(userDocRef, {
+      displayName,
+      email,
+      createdAt,
+      ...addtionaInformation,
+    });
   } catch (error) {
     console.error(`problem creating a new user, ${error.message}`);
   }

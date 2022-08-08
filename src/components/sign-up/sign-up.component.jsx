@@ -38,8 +38,9 @@ const SignupForm = () => {
         formFields.email,
         formFields.password
       );
-      user.displayName = formFields.displayName;
-      const userDocRef = await createUserDocumentFromAuth(user);
+      const userDocRef = await createUserDocumentFromAuth(user, {
+        displayName: formFields.displayName,
+      });
     } catch (error) {
       console.error(`failed to authenticate, ${error}`);
     }
