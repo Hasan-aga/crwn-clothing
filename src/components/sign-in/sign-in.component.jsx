@@ -34,7 +34,8 @@ const SignIn = () => {
 
   return (
     <div className="sign-form">
-      <h2>Already have an account? Sign in:</h2>
+      <h2>Already have an account? </h2>
+      <span>Sign in with Email and password:</span>
       <form onSubmit={handleSubmit}>
         <FormInput
           name="email"
@@ -52,25 +53,20 @@ const SignIn = () => {
           value={formFields.email}
           label="password"
         />
-        <FormInput
-          name="confirmPassowrd"
-          type="confirmPassowrd"
-          required
-          onChange={handleForm}
-          value={formFields.email}
-          label="confirm passowrd"
-        />
-        <CustomButton
-          label={`Sign In`}
-          className="sign-up-button"
-          type="submit"
-          onClick={handleSubmit}
-        />
-        <CustomButton
-          label={`Sign In with Google`}
-          className=" sign-in-google-button"
-          onClick={handleLogGoogleUser}
-        />
+
+        <div className="form-button-group">
+          <CustomButton
+            label={`Sign In`}
+            className="sign-up-button"
+            type="submit"
+            onClick={handleSubmit}
+          />
+          <CustomButton
+            label={`Sign In with Google`}
+            className=" sign-in-google-button"
+            onClick={handleLogGoogleUser}
+          />
+        </div>
       </form>
     </div>
   );
