@@ -2,11 +2,14 @@
   background-color: #f7f7f7;
   border: 1px solid #444;
   padding: 20px 10px;
-  color: #444;
+  color: #f7f7f7;
   font-weight: 700;
   font-size: 16px;
+  transition: all 200ms;
+  text-transform: uppercase;
   &:hover {
     cursor: pointer;
+    background-color: #444;
   }
   &.sign-up-button {
     background-color: #444;
@@ -17,6 +20,9 @@
     font-size: 16px;
     &:hover {
       cursor: pointer;
+      background-color: #f7f7f7;
+      outline: 1px solid #444;
+      color: #444;
     }
   }
 
@@ -29,6 +35,9 @@
     font-size: 16px;
     &:hover {
       cursor: pointer;
+      background-color: #f7f7f7;
+      outline: 1px solid #444;
+      color: #444;
     }
   }
 }

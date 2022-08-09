@@ -1,10 +1,10 @@
 import "./sign-up.style.scss";
-import { Outlet } from "react-router-dom";
 import { useState } from "react";
 import {
   addUserToAuthByEmailAndPassword,
   createUserDocumentFromAuth,
   auth,
+  signInWithPop,
 } from "../../utils/firebase/firebase.util";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../Custom-button/custom-button.component";
@@ -98,7 +98,6 @@ const SignupForm = () => {
           className="sign-up-button"
           type="submit"
         />
-        <Outlet />
       </form>
     </div>
   );
