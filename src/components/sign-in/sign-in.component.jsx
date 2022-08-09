@@ -16,6 +16,7 @@ const defaultFormFields = {
 
 const SignIn = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
+  const [formHint, setFormHint] = useState("Sign in with Email and password:");
 
   const handleForm = (event) => {
     const { name, value } = event.target;
@@ -23,21 +24,34 @@ const SignIn = () => {
     setFormFields({ ...formFields });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
+    setFormHint("Sign in with Email and password:");
     event.preventDefault();
     console.log(`signing in with email= ${formFields.email}`);
-    signUserIn(formFields.email, formFields.password);
+    try {
+      await signUserIn(formFields.email, formFields.password);
+    } catch (error) {
+      console.error(error);
+      setFormHint(error.message);
+    }
   };
 
   const handleLogGoogleUser = async () => {
     const { user } = await signInWithPop();
-    const userDocRef = await createUserDocumentFromAuth(user);
+    await createUserDocumentFromAuth(user);
   };
 
   return (
     <div className="sign-form">
       <h2>Already have an account? </h2>
-      <span>Sign in with Email and password:</span>
+      <span
+        className={`${
+          formHint !== "Sign in with Email and password:" ? "error" : ""
+        }`}
+      >
+        {" "}
+        {formHint}{" "}
+      </span>
       <form onSubmit={handleSubmit}>
         <FormInput
           name="email"

@@ -81,6 +81,9 @@ export const signUserIn = async (email, password) => {
     );
     console.log(userCredentials);
   } catch (error) {
-    console.error(`failed to sign in, ${error}`);
+    if (error.code === "auth/user-not-found") {
+      throw new Error(`no user with such credential was found!`);
+    }
+    throw new Error(`failed to sign in, ${error}`);
   }
 };

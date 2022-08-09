@@ -4,7 +4,6 @@ import {
   addUserToAuthByEmailAndPassword,
   createUserDocumentFromAuth,
   auth,
-  signInWithPop,
 } from "../../utils/firebase/firebase.util";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../Custom-button/custom-button.component";
@@ -41,7 +40,7 @@ const SignupForm = () => {
         formFields.email,
         formFields.password
       );
-      const userDocRef = await createUserDocumentFromAuth(user, {
+      await createUserDocumentFromAuth(user, {
         displayName: formFields.displayName,
       });
       resetForm();
