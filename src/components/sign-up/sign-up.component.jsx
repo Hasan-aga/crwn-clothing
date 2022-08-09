@@ -27,7 +27,6 @@ const SignupForm = () => {
     const { name, value } = event.target;
     formFields[name] = value;
     setFormFields({ ...formFields });
-    console.log(formFields);
   };
 
   const handleSubmit = async (event) => {
@@ -36,7 +35,6 @@ const SignupForm = () => {
       throw new Error(`passwords dont match`);
     }
 
-    console.log("formFields", formFields);
     try {
       const { user } = await addUserToAuthByEmailAndPassword(
         auth,
