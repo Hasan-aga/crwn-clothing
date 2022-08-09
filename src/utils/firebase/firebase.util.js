@@ -84,6 +84,8 @@ export const signUserIn = async (email, password) => {
     if (error.code === "auth/user-not-found") {
       throw new Error(`no user with such credential was found!`);
     }
+    if (error.code === "auth/wrong-password")
+      throw new Error("Wrong password!");
     throw new Error(`failed to sign in, ${error}`);
   }
 };
