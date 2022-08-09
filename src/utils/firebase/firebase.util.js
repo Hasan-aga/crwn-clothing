@@ -81,6 +81,6 @@ export const signUserIn = async (email, password) => {
     );
     console.log(userCredentials);
   } catch (error) {
-    console.error(`failed to sign in, ${{ ...error }}`);
+    console.error(`failed to sign in, ${error}`);
   }
 };
