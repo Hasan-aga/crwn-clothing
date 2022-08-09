@@ -20,6 +20,10 @@ const SignIn = () => {
   const [formHint, setFormHint] = useState("Sign in with Email and password:");
   const { setCurrentUser } = useContext(UserContext);
 
+  const resetForm = () => {
+    setFormFields(defaultFormFields);
+  };
+
   const handleForm = (event) => {
     const { name, value } = event.target;
     formFields[name] = value;
@@ -33,6 +37,7 @@ const SignIn = () => {
     try {
       const { user } = await signUserIn(formFields.email, formFields.password);
       setCurrentUser(user);
+      resetForm();
     } catch (error) {
       console.error(error);
       setFormHint(error.message);
