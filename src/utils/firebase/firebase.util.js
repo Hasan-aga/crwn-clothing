@@ -79,7 +79,7 @@ export const signUserIn = async (email, password) => {
       email,
       password
     );
-    console.log(userCredentials);
+    return userCredentials;
   } catch (error) {
     if (error.code === "auth/user-not-found") {
       throw new Error(`no user with such credential was found!`);
