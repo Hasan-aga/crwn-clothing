@@ -75,7 +75,6 @@ const SignIn = () => {
             label={`Sign In`}
             className="sign-up-button"
             type="submit"
-            onClick={handleSubmit}
           />
           <CustomButton
             label={`Sign In with Google`}
