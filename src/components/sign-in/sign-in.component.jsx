@@ -33,7 +33,8 @@ const SignIn = () => {
   };
 
   return (
-    <div className="sign-in-form">
+    <div className="sign-form">
+      <h2>Already have an account? Sign in:</h2>
       <form onSubmit={handleSubmit}>
         <FormInput
           name="email"
@@ -59,7 +60,12 @@ const SignIn = () => {
           value={formFields.email}
           label="confirm passowrd"
         />
-        <CustomButton label={`Sign In`} type="submit" />
+        <CustomButton
+          label={`Sign In`}
+          className="sign-up-button"
+          type="submit"
+          onClick={handleSubmit}
+        />
         <CustomButton
           label={`Sign In with Google`}
           className=" sign-in-google-button"
