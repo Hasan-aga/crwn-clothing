@@ -80,6 +80,7 @@ const SignIn = () => {
             label={`Sign In with Google`}
             className=" sign-in-google-button"
             onClick={handleLogGoogleUser}
+            type="button"
           />
         </div>
       </form>
