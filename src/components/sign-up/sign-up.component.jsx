@@ -7,6 +7,7 @@ import {
   auth,
 } from "../../utils/firebase/firebase.util";
 import FormInput from "../form-input/form-input.component";
+import CustomButton from "../Custom-button/custom-button.component";
 
 const defaultFormFields = {
   displayName: "",
@@ -92,10 +93,11 @@ const SignupForm = () => {
           value={formFields.confirmPassword}
           label="Confirm Password"
         />
-
-        <button className="sign-up" type="submit">
-          Sign Up
-        </button>
+        <CustomButton
+          label={`Sign Up`}
+          className="sign-up-button"
+          type="submit"
+        />
         <Outlet />
       </form>
     </div>
