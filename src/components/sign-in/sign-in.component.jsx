@@ -10,11 +10,14 @@ const SignIn = () => {
     const userDocRef = await createUserDocumentFromAuth(user);
   };
   return (
-    <CustomButton
-      label={`Sign In with Google`}
-      className=" sign-in-google-button"
-      onClick={logGoogleUser}
-    />
+    <div className="sign-in--google">
+      <h2> Or, Sign in with Google</h2>
+      <CustomButton
+        label={`Sign In with Google`}
+        className=" sign-in-google-button"
+        onClick={logGoogleUser}
+      />
+    </div>
   );
 };
 
