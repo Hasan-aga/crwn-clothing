@@ -4,6 +4,7 @@ import { useState } from "react";
 import {
   createUserDocumentFromAuth,
   signInWithPop,
+  signUserIn,
 } from "../../utils/firebase/firebase.util";
 import "./sign-in.style.scss";
 
@@ -20,11 +21,12 @@ const SignIn = () => {
     const { name, value } = event.target;
     formFields[name] = value;
     setFormFields({ ...formFields });
-    console.log(formFields);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
     console.log(`signing in with email= ${formFields.email}`);
+    signUserIn(formFields.email, formFields.password);
   };
 
   const handleLogGoogleUser = async () => {
@@ -50,7 +52,7 @@ const SignIn = () => {
           type="password"
           required
           onChange={handleForm}
-          value={formFields.email}
+          value={formFields.password}
           label="password"
         />
 
