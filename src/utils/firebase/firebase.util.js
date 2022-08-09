@@ -1,4 +1,5 @@
 // Import the functions you need from the SDKs you need
+
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
@@ -6,6 +7,7 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import { doc, getDoc, setDoc, getFirestore } from "firebase/firestore";
 
@@ -88,5 +90,14 @@ export const signUserIn = async (email, password) => {
     if (error.code === "auth/wrong-password")
       throw new Error("Wrong password!");
     throw new Error(`failed to sign in, ${error}`);
+  }
+};
+
+export const signUserOut = async () => {
+  try {
+    await signOut(auth);
+    console.log("signed out successfully.");
+  } catch (error) {
+    console.error(error);
   }
 };
