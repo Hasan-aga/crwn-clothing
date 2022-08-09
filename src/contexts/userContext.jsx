@@ -1,7 +1,10 @@
 import { createContext, useState } from "react";
 
 // creating the actual context with default value
-export const UserContext = createContext({});
+export const UserContext = createContext({
+  currentUser: null,
+  setCurrentUser: () => null,
+});
 
 export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
