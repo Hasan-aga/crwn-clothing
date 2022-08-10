@@ -17,6 +17,7 @@ const defaultFormFields = {
 
 const SignupForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
+  const [formHint, setFormHint] = useState("Sign up with Email and Password:");
 
   const resetForm = () => {
     setFormFields(defaultFormFields);
@@ -46,16 +47,22 @@ const SignupForm = () => {
       });
       resetForm();
     } catch (error) {
-      if (error.code === "auth/email-already-in-use")
-        alert("email already in use!");
-      console.error(`failed to authenticate, ${error}`);
+      console.error(`failed to authenticate, ${error.message}`);
+      setFormHint(error.code.slice(5).split("-").join(" "));
     }
   };
 
   return (
     <div className="sign-form">
       <h2>Don't have an account?</h2>
-      <span>Sign up with Email and Password</span>
+      <span
+        className={`${
+          formHint !== "Sign up with Email and Password:" ? "error" : ""
+        }`}
+      >
+        {" "}
+        {formHint}{" "}
+      </span>
       <form onSubmit={handleSubmit}>
         <FormInput
           name="displayName"
@@ -64,6 +71,7 @@ const SignupForm = () => {
           onChange={handleForm}
           value={formFields.displayName}
           label="Display Name"
+          minlength="5"
         />
 
         <FormInput
@@ -82,6 +90,7 @@ const SignupForm = () => {
           onChange={handleForm}
           value={formFields.password}
           label="Password"
+          minlength="6"
         />
 
         <FormInput
