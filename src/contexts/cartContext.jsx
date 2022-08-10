@@ -49,10 +49,7 @@ export const CartProvider = ({ children }) => {
   const changeProductQuantity = (product, increment = true) => {
     if (product.quantity <= 1 && !increment) return;
     increment ? (product.quantity += 1) : (product.quantity -= 1);
-    setCartProducts([
-      ...cartProducts.filter((element) => element.name !== product.name),
-      product,
-    ]);
+    setCartProducts([...cartProducts]);
   };
 
   useEffect(() => {

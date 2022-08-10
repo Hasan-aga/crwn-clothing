@@ -1,0 +1,24 @@
+.checkout-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  .cart-item-container {
+    .cart-item-text {
+      display: flex;
+      flex-direction: row;
+      gap: 180px;
+      .item-title {
+        font-size: 24px;
+      }
+      .tools-container {
+        font-size: 40px;
+        column-gap: 10px;
+      }
+
+      .trash-icon {
+        margin-left: 150px;
+        transform: scale(1.5);
+      }
+    }
+  }
+}
