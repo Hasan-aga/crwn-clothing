@@ -1,8 +1,10 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const CartContext = createContext({
   cartProducts: [],
   setCartProducts: () => [],
+  cartProductsCount: 0,
+  setCartProductsCount: () => 0,
   dropdownStatus: false,
   setDropDownStatus: () => null,
 });
@@ -10,6 +12,7 @@ export const CartContext = createContext({
 export const CartProvider = ({ children }) => {
   const [cartProducts, setCartProducts] = useState([]);
   const [dropDownStatus, setDropDownStatus] = useState(false);
+  const [cartProductsCount, setCartProductsCount] = useState(0);
 
   const toggleDropdown = () => {
     setDropDownStatus(!dropDownStatus);
@@ -35,12 +38,21 @@ export const CartProvider = ({ children }) => {
     setCartProducts(getNewProductList(product));
   };
 
+  useEffect(() => {
+    const count = cartProducts.reduce(
+      (acc, product) => (acc += product.quantity),
+      0
+    );
+    setCartProductsCount(count);
+  }, [cartProducts]);
+
   const value = {
     cartProducts,
     setCartProducts,
     addToCart,
     toggleDropdown,
     dropDownStatus,
+    cartProductsCount,
   };
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
