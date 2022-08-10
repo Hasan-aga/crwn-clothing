@@ -1,5 +1,5 @@
 @mixin shrink-label {
-  bottom: 15px;
+  bottom: 20px;
   font-size: 14px;
   color: #666;
   letter-spacing: 1.5;
@@ -12,6 +12,7 @@
   text-align: start;
   position: relative;
   .form-input {
+    font-size: 20px;
     border: none;
     border-bottom: 1px solid #444;
     transition: all 200ms;
