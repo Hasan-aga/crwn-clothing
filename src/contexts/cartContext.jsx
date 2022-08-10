@@ -25,17 +25,25 @@ export const CartProvider = ({ children }) => {
 
     if (!cartProducts.find((element) => product.name === element.name))
       return [{ quantity: 1, ...product }, ...cartProducts];
-    else {
-      const existingProduct = cartProducts.find(
-        (element) => element.name === product.name
-      );
-      existingProduct.quantity += 1;
-      return [...cartProducts];
-    }
+
+    const existingProduct = cartProducts.find(
+      (element) => element.name === product.name
+    );
+    existingProduct.quantity += 1;
+    return [...cartProducts];
   };
 
   const addToCart = (product) => {
     setCartProducts(getNewProductList(product));
+  };
+
+  const removeProductFromCart = (product) => {
+    const newCartProducts = cartProducts.filter(
+      (element) => element.name !== product.name
+    );
+    console.log("removing...", newCartProducts);
+    if (!cartProducts || !newCartProducts) return;
+    setCartProducts([...newCartProducts]);
   };
 
   useEffect(() => {
@@ -53,6 +61,7 @@ export const CartProvider = ({ children }) => {
     toggleDropdown,
     dropDownStatus,
     cartProductsCount,
+    removeProductFromCart,
   };
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };

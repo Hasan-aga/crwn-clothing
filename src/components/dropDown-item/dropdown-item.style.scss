@@ -2,14 +2,24 @@
   display: flex;
   row-gap: 20px;
   margin-bottom: 20px;
+  &:hover {
+    background-color: #f7f7f7;
+  }
+
+  .trash-icon {
+    width: 40px;
+    padding: 20px 10px;
+    margin: auto 0;
+    display: inline-block;
+    &:hover {
+      cursor: pointer;
+    }
+  }
 
   .cart-item-text {
     transition: all 200ms;
     width: 100%;
     padding: 30px 20px;
-    &:hover {
-      background-color: #f7f7f7;
-    }
     &:hover .item-info {
       font-size: 20px;
     }
