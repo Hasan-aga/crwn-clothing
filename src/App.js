@@ -4,8 +4,7 @@ import { Routes, Route } from "react-router-dom";
 
 import SignPage from "./routes/sign-page/sign-page.component";
 import Profile from "./routes/profile.component";
-
-const Shop = () => <h2>Start Shopping</h2>;
+import Shop from "./routes/shop/shop.component";
 
 const App = () => {
   return (
