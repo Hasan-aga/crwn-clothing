@@ -1,13 +1,12 @@
 import CustomButton from "../Custom-button/custom-button.component";
 import FormInput from "../form-input/form-input.component";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import {
   createUserDocumentFromAuth,
   signInWithPop,
   signUserIn,
 } from "../../utils/firebase/firebase.util";
 import "./sign-in.style.scss";
-import { UserContext } from "../../contexts/userContext";
 
 const defaultFormFields = {
   email: "",
@@ -18,7 +17,6 @@ const defaultFormFields = {
 const SignIn = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const [formHint, setFormHint] = useState("Sign in with Email and password:");
-  const { setCurrentUser } = useContext(UserContext);
 
   const resetForm = () => {
     setFormFields(defaultFormFields);
@@ -36,7 +34,6 @@ const SignIn = () => {
     console.log(`signing in with email= ${formFields.email}`);
     try {
       const { user } = await signUserIn(formFields.email, formFields.password);
-      setCurrentUser(user);
       resetForm();
     } catch (error) {
       console.error(error);
