@@ -4,7 +4,11 @@ import { useContext } from "react";
 import { CartContext } from "../../contexts/cartContext";
 import Counter from "../counter/counter.component";
 const DropdownItem = ({ item }) => {
-  const { removeProductFromCart } = useContext(CartContext);
+  const { removeProductFromCart, changeProductQuantity } =
+    useContext(CartContext);
+
+  const increment = () => changeProductQuantity(item);
+  const decrement = () => changeProductQuantity(item, false);
   return (
     <div className="cart-item-container">
       <img alt="item.name" src={item.imageUrl} />
@@ -12,7 +16,11 @@ const DropdownItem = ({ item }) => {
         <h3 className="item-title">{item.name}</h3>
         <div className="tools-container">
           <span className="item-info">
-            <Counter quantity={item.quantity} />
+            <Counter
+              item={item}
+              incrementor={increment}
+              decrementor={decrement}
+            />
           </span>
           <span className="item-info">&#10539; ${item.price}</span>
           <Trash

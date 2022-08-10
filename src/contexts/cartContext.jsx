@@ -46,6 +46,15 @@ export const CartProvider = ({ children }) => {
     setCartProducts([...newCartProducts]);
   };
 
+  const changeProductQuantity = (product, increment = true) => {
+    if (product.quantity <= 1 && !increment) return;
+    increment ? (product.quantity += 1) : (product.quantity -= 1);
+    setCartProducts([
+      ...cartProducts.filter((element) => element.name !== product.name),
+      product,
+    ]);
+  };
+
   useEffect(() => {
     const count = cartProducts.reduce(
       (acc, product) => (acc += product.quantity),
@@ -62,6 +71,7 @@ export const CartProvider = ({ children }) => {
     dropDownStatus,
     cartProductsCount,
     removeProductFromCart,
+    changeProductQuantity,
   };
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
