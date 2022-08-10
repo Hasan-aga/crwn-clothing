@@ -6,8 +6,10 @@ import { UserContext } from "../../contexts/userContext";
 import { signUserOut } from "../../utils/firebase/firebase.util";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
+import { useState } from "react";
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
+  const [dropDownStatus, setDropDownStatus] = useState(false);
 
   const signUserOutAndResetUserContext = async () => {
     const confirmSignOut = window.confirm("are you sure you want to sign out?");
@@ -15,6 +17,11 @@ const Navigation = () => {
     if (!confirmSignOut) return;
     await signUserOut();
   };
+
+  const toggleDropdown = () => {
+    setDropDownStatus(!dropDownStatus);
+  };
+
   return (
     <Fragment>
       <div className="navigation-container">
@@ -49,13 +56,13 @@ const Navigation = () => {
               )}
             </li>
             <li>
-              <Link className="link" to={"/"}>
+              <Link className="link" to={"/shop"} onClick={toggleDropdown}>
                 <CartIcon />
               </Link>
             </li>
           </ul>
         </div>
-        <CartDropdown />
+        <CartDropdown active={dropDownStatus} />
       </div>
       <Outlet />
     </Fragment>
