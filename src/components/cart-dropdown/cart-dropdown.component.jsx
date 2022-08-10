@@ -3,6 +3,8 @@ import CustomButton from "../custom-button/custom-button.component";
 import { Fragment, useContext } from "react";
 import { CartContext } from "../../contexts/cartContext";
 import DropdownItem from "../dropDown-item/dropdown-item.component";
+import { Link } from "react-router-dom";
+
 const CartDropdown = (props) => {
   const { cartProducts } = useContext(CartContext);
   console.log(cartProducts, "d");
@@ -13,7 +15,10 @@ const CartDropdown = (props) => {
           <DropdownItem key={product.id} item={product} />
         ))}
       </div>
-      <CustomButton label="go to checkout" />
+
+      <Link to="/checkout">
+        <CustomButton label="go to checkout" />
+      </Link>
     </div>
   ) : (
     <Fragment />

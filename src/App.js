@@ -5,8 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import SignPage from "./routes/sign-page/sign-page.component";
 import Profile from "./routes/profile.component";
 import Shop from "./routes/shop/shop.component";
-import { ProductsProvider } from "./contexts/productsContext";
-
+import Checkout from "./routes/checkout/checkout.component";
 const App = () => {
   return (
     <Routes>
@@ -14,6 +13,7 @@ const App = () => {
         <Route index element={<Home />}></Route>
         <Route path="greet" element={<Profile />}></Route>
         <Route path="shop" element={<Shop />}></Route>
+        <Route path="checkout" element={<Checkout />} />
         <Route path="signin" element={<SignPage />} />
       </Route>
     </Routes>

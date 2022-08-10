@@ -53,9 +53,9 @@ const Navigation = () => {
               )}
             </li>
             <li>
-              <Link className="link" to={"/shop"} onClick={toggleDropdown}>
+              <div onClick={toggleDropdown}>
                 <CartIcon />
-              </Link>
+              </div>
             </li>
           </ul>
         </div>
