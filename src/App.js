@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import SignPage from "./routes/sign-page/sign-page.component";
 import Profile from "./routes/profile.component";
 import Shop from "./routes/shop/shop.component";
+import { ProductsProvider } from "./contexts/productsContext";
 
 const App = () => {
   return (
