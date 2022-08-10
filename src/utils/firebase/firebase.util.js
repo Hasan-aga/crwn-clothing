@@ -50,8 +50,7 @@ export const createUserDocumentFromAuth = async (
   }
 
   // if user has no doc, create one
-  const { email } = userAuth;
-  const displayName = addtionaInformation.displayName;
+  const { email, displayName } = userAuth;
   const createdAt = new Date();
   console.log("user does not exists, creating new user", displayName, email);
 
