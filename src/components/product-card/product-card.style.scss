@@ -1,0 +1,41 @@
+.product-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 30px;
+  height: 350px;
+  position: relative;
+
+  .product-button {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0%;
+    width: 50%;
+    &:hover {
+      opacity: 100% !important;
+      background-color: black;
+      outline: 1px solid white;
+    }
+  }
+
+  &:hover .product-button {
+    opacity: 60%;
+    width: 80%;
+  }
+
+  & img {
+    height: 95%;
+    width: 100%;
+    object-fit: cover;
+    overflow: hidden;
+  }
+}
+
+.product-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
