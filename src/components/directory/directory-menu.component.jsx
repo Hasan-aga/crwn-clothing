@@ -1,18 +1,13 @@
 import "./directory-menu.style.scss";
 import Category from "../category/category.component";
 
-const CategoryMenu = (props) => {
-  const categories = props.categories;
+const CategoryMenu = ({ category }) => {
   return (
-    <div className="directory-container">
-      {categories.map((category) => (
-        <Category
-          id={category.id}
-          title={category.title}
-          imageUrl={category.imageUrl}
-        ></Category>
-      ))}
-    </div>
+    <Category
+      id={category.id}
+      title={category.title}
+      imageUrl={category.imageUrl}
+    ></Category>
   );
 };
 

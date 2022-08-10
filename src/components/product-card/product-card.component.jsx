@@ -3,7 +3,7 @@ import "./product-card.style.scss";
 
 const ProductCard = ({ product }) => {
   return (
-    <div className="product-container" key={product.id}>
+    <div className="product-container">
       <CustomButton label="add to cart" className={"product-button"} />
       <img
         className="product-image"
