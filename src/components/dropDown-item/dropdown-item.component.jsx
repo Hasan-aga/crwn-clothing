@@ -5,9 +5,10 @@ const DropdownItem = ({ item }) => {
     <div className="cart-item-container">
       <img alt="item.name" src={item.imageUrl} />
       <div className="cart-item-text">
-        <span className="item-title">{item.name}</span>
-        <span className="item-info">{item.price}</span>
-        <span className="item-info">{item.quantity}</span>
+        <h3 className="item-title">{item.name}</h3>
+        <span className="item-info">
+          {item.quantity} X ${item.price}
+        </span>
       </div>
     </div>
   );
