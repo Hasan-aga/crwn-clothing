@@ -11,6 +11,16 @@ const Checkout = () => {
       {cartProducts.map((product) => (
         <DropdownItem key={product.id} item={product} />
       ))}
+      <div className="checkout-total">
+        <h3>
+          {" "}
+          Total={" "}
+          {cartProducts.reduce(
+            (acc, product) => (acc += product.quantity * product.price),
+            0
+          )}
+        </h3>
+      </div>
     </div>
   );
 };
