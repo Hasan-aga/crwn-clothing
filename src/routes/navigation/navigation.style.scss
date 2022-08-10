@@ -1,6 +1,7 @@
 .navigation-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 10px 20px;
   margin-top: 10px;
   margin-bottom: 20px;
@@ -15,8 +16,10 @@
     display: flex;
     gap: 10px;
     list-style: none;
+    align-items: center;
     .link {
-      padding: 10px 20px;
+      height: fit-content;
+      padding: 1px 20px;
     }
   }
 }
