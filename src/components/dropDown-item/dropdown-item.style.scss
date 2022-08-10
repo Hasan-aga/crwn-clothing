@@ -1,18 +1,20 @@
 .cart-item-container {
   display: flex;
   row-gap: 20px;
+  align-items: center;
   margin-bottom: 20px;
   &:hover {
     background-color: #f7f7f7;
   }
 
   .trash-icon {
-    width: 40px;
-    padding: 20px 10px;
-    margin: auto 0;
+    width: 20px;
     display: inline-block;
+    margin: 10px;
+    transition: all 200ms;
     &:hover {
       cursor: pointer;
+      transform: scale(1.2);
     }
   }
 

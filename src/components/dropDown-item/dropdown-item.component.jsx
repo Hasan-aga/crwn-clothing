@@ -17,6 +17,7 @@ const DropdownItem = ({ item }) => {
         <Trash
           className="trash-icon"
           onClick={() => removeProductFromCart(item)}
+          title="Delete"
         />
       </div>
     </div>
