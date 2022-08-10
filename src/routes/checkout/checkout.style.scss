@@ -3,7 +3,11 @@
   flex-direction: column;
   width: 100%;
   .cart-item-container {
+    padding-bottom: 20px;
+    margin-bottom: 60px;
+    border-bottom: 1px solid #888;
     .cart-item-text {
+      background-color: none;
       display: flex;
       flex-direction: row;
       gap: 180px;
