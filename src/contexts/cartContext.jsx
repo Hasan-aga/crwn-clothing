@@ -3,31 +3,44 @@ import { createContext, useState } from "react";
 export const CartContext = createContext({
   cartProducts: [],
   setCartProducts: () => [],
+  dropdownStatus: false,
+  setDropDownStatus: () => null,
 });
 
 export const CartProvider = ({ children }) => {
   const [cartProducts, setCartProducts] = useState([]);
+  const [dropDownStatus, setDropDownStatus] = useState(false);
 
-  const addToCart = (product) => {
+  const toggleDropdown = () => {
+    setDropDownStatus(!dropDownStatus);
+  };
+
+  const getNewProductList = (product) => {
     console.log(cartProducts);
     console.log(`adding ${product.name} to ${cartProducts}`);
-    if (!cartProducts) setCartProducts([{ quantity: 1, ...product }]);
+    if (!cartProducts) return [{ quantity: 1, ...product }];
 
     if (!cartProducts.find((element) => product.name === element.name))
-      cartProducts.push({ quantity: 1, ...product });
+      return [{ quantity: 1, ...product }, ...cartProducts];
     else {
       const existingProduct = cartProducts.find(
         (element) => element.name === product.name
       );
       existingProduct.quantity += 1;
-      setCartProducts(cartProducts);
+      return [...cartProducts];
     }
+  };
+
+  const addToCart = (product) => {
+    setCartProducts(getNewProductList(product));
   };
 
   const value = {
     cartProducts,
     setCartProducts,
     addToCart,
+    toggleDropdown,
+    dropDownStatus,
   };
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
