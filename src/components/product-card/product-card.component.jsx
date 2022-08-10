@@ -1,4 +1,4 @@
-import CustomButton from "../Custom-button/custom-button.component";
+import CustomButton from "../custom-button/custom-button.component";
 import "./product-card.style.scss";
 
 const ProductCard = ({ product }) => {

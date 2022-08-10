@@ -1,4 +1,4 @@
-import CustomButton from "../Custom-button/custom-button.component";
+import CustomButton from "../custom-button/custom-button.component";
 import FormInput from "../form-input/form-input.component";
 import { useState } from "react";
 import {
