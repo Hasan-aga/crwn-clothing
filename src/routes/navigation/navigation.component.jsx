@@ -5,6 +5,7 @@ import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 import { UserContext } from "../../contexts/userContext";
 import { signUserOut } from "../../utils/firebase/firebase.util";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
+import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
 
@@ -54,6 +55,7 @@ const Navigation = () => {
             </li>
           </ul>
         </div>
+        <CartDropdown />
       </div>
       <Outlet />
     </Fragment>
