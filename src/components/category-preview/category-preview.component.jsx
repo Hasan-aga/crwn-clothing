@@ -5,7 +5,10 @@ import ProductCard from "../product-card/product-card.component";
 const CategoryPreview = ({ title, products }) => {
   return (
     <Fragment>
-      <h3 className="category-title"> {title}</h3>
+      <div className="category-title">
+        {" "}
+        <span>{title}</span>
+      </div>
       <div className="shop-products">
         {products.slice(0, 4).map((product) => (
           <ProductCard product={product} key={product.id + product.name} />
