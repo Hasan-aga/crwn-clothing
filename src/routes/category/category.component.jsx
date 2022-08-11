@@ -25,12 +25,6 @@ const Category = () => {
   ) : (
     <h3>fetching...</h3>
   );
-
-  //     <Fragment>
-  //       <h3>{category}</h3>
-  //       <ProductPreview key={category} title={category} products={products} />;
-  //     </Fragment>
-  //   ;
 };
 
 export default Category;

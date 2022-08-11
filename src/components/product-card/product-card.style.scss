@@ -1,9 +1,8 @@
 .product-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 90%;
   margin-bottom: 30px;
-  height: 350px;
   position: relative;
 
   .product-button {
@@ -26,7 +25,6 @@
   }
 
   & img {
-    height: 95%;
     width: 100%;
     object-fit: cover;
     overflow: hidden;
