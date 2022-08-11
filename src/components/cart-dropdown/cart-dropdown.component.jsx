@@ -17,7 +17,7 @@ const CartDropdown = (props) => {
       </div>
 
       <Link to="/checkout">
-        <CustomButton label="go to checkout" />
+        <CustomButton className="cart-button" label="go to checkout" />
       </Link>
     </div>
   ) : (
