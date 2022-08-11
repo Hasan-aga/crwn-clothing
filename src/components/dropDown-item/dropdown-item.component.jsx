@@ -9,6 +9,7 @@ const DropdownItem = ({ item }) => {
 
   const increment = () => changeProductQuantity(item);
   const decrement = () => changeProductQuantity(item, false);
+  const removeProductHandler = () => removeProductFromCart(item);
   return (
     <div className="cart-item-container">
       <img alt="item.name" src={item.imageUrl} />
@@ -26,7 +27,7 @@ const DropdownItem = ({ item }) => {
           <span className="item-info">${item.price}</span>
           <Trash
             className="trash-icon"
-            onClick={() => removeProductFromCart(item)}
+            onClick={removeProductHandler}
             title="Delete"
           />
         </div>
