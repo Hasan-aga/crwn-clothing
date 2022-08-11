@@ -14,7 +14,7 @@ const Checkout = () => {
       <div className="checkout-total">
         <h3>
           {" "}
-          Total={" "}
+          Total =$
           {cartProducts.reduce(
             (acc, product) => (acc += product.quantity * product.price),
             0

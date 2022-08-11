@@ -1,15 +1,18 @@
 .checkout-container {
   display: flex;
   flex-direction: column;
+  row-gap: 60px;
   width: 100%;
   .cart-item-container {
-    padding-bottom: 20px;
-    margin-bottom: 60px;
     border-bottom: 1px solid #888;
+    img {
+      width: 10%;
+    }
     .cart-item-text {
       background-color: none;
       display: flex;
       flex-direction: row;
+      justify-content: space-between;
       gap: 180px;
       .item-title {
         font-size: 24px;
@@ -24,5 +27,11 @@
         transform: scale(1.5);
       }
     }
+  }
+
+  .checkout-total {
+    font-size: 30px;
+    text-align: end;
+    padding: 0px 30px;
   }
 }
