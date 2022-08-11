@@ -3,26 +3,25 @@ import SHOP_DATA from "../assets/shop-data";
 import { getCategoriesAndDocuments } from "../utils/firebase/firebase.util";
 
 // creating the actual context with default value
-export const ProductsContext = createContext({
-  products: [],
-  setProduct: () => [],
+export const CategoriesContext = createContext({
+  categoryMap: {},
+  setCategoryMap: () => {},
 });
 
-export const ProductsProvider = ({ children }) => {
+export const CategoriesProvider = ({ children }) => {
   useEffect(() => {
     const getDataFromServer = async () => {
       const result = await getCategoriesAndDocuments();
-      console.log(`results`, result);
-      return result;
+      setCategoryMap(result);
     };
     getDataFromServer();
   }, []);
 
-  const [products, setProducts] = useState(SHOP_DATA);
-  const value = { products, setProducts };
+  const [categoryMap, setCategoryMap] = useState({});
+  const value = { categoryMap, setCategoryMap };
   return (
-    <ProductsContext.Provider value={value}>
+    <CategoriesContext.Provider value={value}>
       {children}
-    </ProductsContext.Provider>
+    </CategoriesContext.Provider>
   );
 };
