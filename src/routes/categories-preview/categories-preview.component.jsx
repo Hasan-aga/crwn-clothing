@@ -1,11 +1,11 @@
 import { useContext, Fragment } from "react";
-import ProductCard from "../../components/product-card/product-card.component";
 import ProductPreview from "../../components/category-preview/category-preview.component";
 import { CategoriesContext } from "../../contexts/categoriesContext";
-import "./shop.style.scss";
-const Shop = () => {
+import "./categories-preview.style.scss";
+
+const CategoriesPreview = () => {
   const { categoryMap } = useContext(CategoriesContext);
-  console.log("shop");
+  console.log("CategoriesPreview");
   return (
     <Fragment>
       {Object.keys(categoryMap).map((title) => {
@@ -16,4 +16,4 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export default CategoriesPreview;

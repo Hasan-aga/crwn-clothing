@@ -1,8 +1,8 @@
-import "./product-preview.style.scss";
+import "./category-preview.style.scss";
 import { Fragment } from "react";
 import ProductCard from "../product-card/product-card.component";
 
-const ProductPreview = ({ title, products }) => {
+const CategoryPreview = ({ title, products }) => {
   return (
     <Fragment>
       <h3 className="category-title"> {title}</h3>
@@ -15,4 +15,4 @@ const ProductPreview = ({ title, products }) => {
   );
 };
 
-export default ProductPreview;
+export default CategoryPreview;
