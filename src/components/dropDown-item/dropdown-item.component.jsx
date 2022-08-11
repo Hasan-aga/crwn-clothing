@@ -22,7 +22,8 @@ const DropdownItem = ({ item }) => {
               decrementor={decrement}
             />
           </span>
-          <span className="item-info">&#10539; ${item.price}</span>
+          <span className="item-info">&#10539; </span>
+          <span className="item-info">${item.price}</span>
           <Trash
             className="trash-icon"
             onClick={() => removeProductFromCart(item)}

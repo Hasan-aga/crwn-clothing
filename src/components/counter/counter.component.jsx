@@ -10,9 +10,17 @@ const Counter = (props) => {
   console.log(quantity);
   return (
     <div className="counter-container">
-      <UpArrow onClick={incrementor} className="counter-arrow" />
+      <UpArrow
+        title="Increase Quantity"
+        onClick={incrementor}
+        className="counter-arrow"
+      />
       {quantity}
-      <DownArrow onClick={decrementor} className="counter-arrow" />
+      <DownArrow
+        title="Decrease Quantity"
+        onClick={decrementor}
+        className="counter-arrow"
+      />
     </div>
   );
 };
