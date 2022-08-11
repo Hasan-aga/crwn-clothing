@@ -12,7 +12,7 @@ const Shop = () => {
           <Fragment key={title}>
             <h3 className="category-title"> {title}</h3>
             <div className="shop-products">
-              {categoryMap[title].map((product) => (
+              {categoryMap[title].slice(0, 4).map((product) => (
                 <ProductCard
                   product={product}
                   key={product.id + product.name}
