@@ -4,7 +4,7 @@ import { CartContext } from "../../contexts/cartContext";
 import { useContext } from "react";
 
 const Checkout = () => {
-  const { cartProducts } = useContext(CartContext);
+  const { cartProducts, cartTotal } = useContext(CartContext);
 
   return (
     <div className="checkout-container">
@@ -12,14 +12,7 @@ const Checkout = () => {
         <DropdownItem key={product.id} item={product} />
       ))}
       <div className="checkout-total">
-        <h3>
-          {" "}
-          Total =$
-          {cartProducts.reduce(
-            (acc, product) => (acc += product.quantity * product.price),
-            0
-          )}
-        </h3>
+        <h3> Total =${cartTotal}</h3>
       </div>
     </div>
   );
