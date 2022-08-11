@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import SHOP_DATA from "../assets/shop-data.json";
+import SHOP_DATA from "../assets/shop-data";
 
 // creating the actual context with default value
 export const ProductsContext = createContext({
