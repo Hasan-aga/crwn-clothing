@@ -50,18 +50,15 @@ export const createUserDocumentFromAuth = async (
 ) => {
   const userDocRef = doc(db, "users", userAuth.uid);
   const userData = await getDoc(userDocRef);
-  console.log(userData.exists());
 
   //   if user doc exists, return the ref
   if (userData.exists()) {
-    console.log("user exists");
     return userDocRef;
   }
 
   // if user has no doc, create one
   const { email, displayName } = userAuth;
   const createdAt = new Date();
-  console.log("user does not exists, creating new user", displayName, email);
 
   try {
     await setDoc(userDocRef, {
@@ -70,9 +67,7 @@ export const createUserDocumentFromAuth = async (
       createdAt,
       ...addtionaInformation,
     });
-  } catch (error) {
-    console.error(`problem creating a new user, ${error.message}`);
-  }
+  } catch (error) {}
 };
 
 export const addUserToAuthByEmailAndPassword = async (
@@ -105,7 +100,6 @@ export const signUserIn = async (email, password) => {
 export const signUserOut = async () => {
   try {
     await signOut(auth);
-    console.log("signed out successfully.");
   } catch (error) {
     console.error(error);
   }
@@ -128,9 +122,6 @@ export const addCollectionAndDocumentsToDb = async (
   });
   try {
     await batch.commit();
-    console.log(
-      `added ${objectsToAdd.length}  ${Object.keys(objectsToAdd)} to db`
-    );
   } catch (error) {
     console.error(error);
   }
@@ -140,7 +131,6 @@ export const getCategoriesAndDocuments = async () => {
   const collectionReference = collection(db, "categories");
   const q = query(collectionReference);
   const querySnapshot = await getDocs(q);
-  console.log(querySnapshot.docs);
   const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
     const { title, items } = docSnapshot.data();
     acc[title.toLowerCase()] = items;

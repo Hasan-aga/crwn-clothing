@@ -10,7 +10,14 @@ const CategoriesPreview = () => {
     <Fragment>
       {Object.keys(categoryMap).map((title) => {
         const products = categoryMap[title];
-        return <ProductPreview key={title} title={title} products={products} />;
+        return (
+          <ProductPreview
+            key={title}
+            title={title}
+            products={products}
+            previewIndex="4"
+          />
+        );
       })}
     </Fragment>
   );

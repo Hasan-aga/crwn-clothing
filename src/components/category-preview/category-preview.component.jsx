@@ -2,7 +2,7 @@ import "./category-preview.style.scss";
 import { Fragment } from "react";
 import ProductCard from "../product-card/product-card.component";
 
-const CategoryPreview = ({ title, products }) => {
+const CategoryPreview = ({ title, products, previewIndex }) => {
   return (
     <Fragment>
       <div className="category-title">
@@ -10,7 +10,7 @@ const CategoryPreview = ({ title, products }) => {
         <span>{title}</span>
       </div>
       <div className="shop-products">
-        {products.slice(0, 4).map((product) => (
+        {products.slice(0, previewIndex).map((product) => (
           <ProductCard product={product} key={product.id + product.name} />
         ))}
       </div>

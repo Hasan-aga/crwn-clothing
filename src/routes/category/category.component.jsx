@@ -1,0 +1,36 @@
+import "./category.style.scss";
+import { useContext, useState, useEffect } from "react";
+import { CategoriesContext } from "../../contexts/categoriesContext";
+import ProductPreview from "../../components/category-preview/category-preview.component";
+import { useParams } from "react-router-dom";
+
+const Category = () => {
+  const { category } = useParams();
+  const { categoryMap } = useContext(CategoriesContext);
+  const [currentCategoryProducts, setCurrentCategoryProducts] = useState([]);
+
+  useEffect(() => {
+    setCurrentCategoryProducts(categoryMap[category]);
+  }, [category, categoryMap]);
+
+  return currentCategoryProducts ? (
+    <div className="category-full">
+      <ProductPreview
+        key={category}
+        title={"Our collection of " + category}
+        products={currentCategoryProducts}
+      />
+      ;
+    </div>
+  ) : (
+    <h3>fetching...</h3>
+  );
+
+  //     <Fragment>
+  //       <h3>{category}</h3>
+  //       <ProductPreview key={category} title={category} products={products} />;
+  //     </Fragment>
+  //   ;
+};
+
+export default Category;

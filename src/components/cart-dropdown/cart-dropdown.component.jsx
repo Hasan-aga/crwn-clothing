@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 
 const CartDropdown = (props) => {
   const { cartProducts } = useContext(CartContext);
-  console.log(cartProducts, "d");
   return props.active ? (
     <div className={`cart-dropdown-container`}>
       <div className="cart-items">
