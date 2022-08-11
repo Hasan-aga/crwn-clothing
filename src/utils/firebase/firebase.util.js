@@ -10,7 +10,14 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { doc, getDoc, setDoc, getFirestore } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  setDoc,
+  getFirestore,
+  collection,
+  writeBatch,
+} from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -104,4 +111,25 @@ export const signUserOut = async () => {
 
 export const onAuthStateChangedListener = (callback) => {
   return onAuthStateChanged(auth, callback);
+};
+
+// database
+export const addCollectionAndDocumentsToDb = async (
+  collectionKey,
+  objectsToAdd
+) => {
+  const collectionReference = collection(db, collectionKey);
+  const batch = writeBatch(db);
+  objectsToAdd.forEach((object) => {
+    const docReference = doc(collectionReference, object.title.toLowerCase());
+    batch.set(docReference, object);
+  });
+  try {
+    await batch.commit();
+    console.log(
+      `added ${objectsToAdd.length}  ${Object.keys(objectsToAdd)} to db`
+    );
+  } catch (error) {
+    console.error(error);
+  }
 };

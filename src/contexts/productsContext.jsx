@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import SHOP_DATA from "../assets/shop-data";
+import { addCollectionAndDocumentsToDb } from "../utils/firebase/firebase.util";
 
 // creating the actual context with default value
 export const ProductsContext = createContext({
