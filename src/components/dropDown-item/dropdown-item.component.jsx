@@ -1,17 +1,18 @@
-import "./dropdown-item.style.scss";
+import "./dropdown-item.style.jsx";
 import { ReactComponent as Trash } from "../../assets/trash.svg";
 import { useContext } from "react";
 import { CartContext } from "../../contexts/cartContext";
 import Counter from "../counter/counter.component";
-const DropdownItem = ({ item }) => {
+import { CartItemContainer } from "./dropdown-item.style.jsx";
+const DropdownItem = ({ item, checkoutGrid }) => {
   const { removeProductFromCart, changeProductQuantity } =
     useContext(CartContext);
 
   const increment = () => changeProductQuantity(item);
   const decrement = () => changeProductQuantity(item, false);
   const removeProductHandler = () => removeProductFromCart(item);
-  return (
-    <div className="cart-item-container">
+  return checkoutGrid ? (
+    <CartItemContainer checkoutItem>
       <img alt="item.name" src={item.imageUrl} />
       <div className="cart-item-text">
         <h3 className="item-title">{item.name}</h3>
@@ -32,7 +33,30 @@ const DropdownItem = ({ item }) => {
           />
         </div>
       </div>
-    </div>
+    </CartItemContainer>
+  ) : (
+    <CartItemContainer>
+      <img alt="item.name" src={item.imageUrl} />
+      <div className="cart-item-text">
+        <h3 className="item-title">{item.name}</h3>
+        <div className="tools-container">
+          <span className="item-info">
+            <Counter
+              item={item}
+              incrementor={increment}
+              decrementor={decrement}
+            />
+          </span>
+          <span className="item-info">&#10539; </span>
+          <span className="item-info">${item.price}</span>
+          <Trash
+            className="trash-icon"
+            onClick={removeProductHandler}
+            title="Delete"
+          />
+        </div>
+      </div>
+    </CartItemContainer>
   );
 };
 

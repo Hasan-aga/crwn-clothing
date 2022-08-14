@@ -11,7 +11,7 @@ const Checkout = () => {
     <CheckOutContianer>
       {cartProducts.map((product) => (
         // TODO: refactor reusable css below
-        <DropdownItem key={product.id} item={product} />
+        <DropdownItem checkoutGrid key={product.id} item={product} />
       ))}
       <Total>
         <h3> Total =${cartTotal}</h3>
