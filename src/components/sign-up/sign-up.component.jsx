@@ -21,6 +21,7 @@ const SignupForm = () => {
 
   const resetForm = () => {
     setFormFields(defaultFormFields);
+    setFormHint("Sign up with Email and Password:");
   };
 
   const handleForm = (event) => {
@@ -31,11 +32,11 @@ const SignupForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (formFields.password !== formFields.confirmPassword) {
-      throw new Error(`passwords dont match`);
-    }
-
     try {
+      if (formFields.password !== formFields.confirmPassword) {
+        throw new Error(`pAsSwOrDs dont match`);
+      }
+
       const { user } = await addUserToAuthByEmailAndPassword(
         auth,
         formFields.email,
@@ -48,7 +49,7 @@ const SignupForm = () => {
       resetForm();
     } catch (error) {
       console.error(`failed to authenticate, ${error.message}`);
-      setFormHint(error.code.slice(5).split("-").join(" "));
+      setFormHint(error.message);
     }
   };
 
@@ -67,6 +68,7 @@ const SignupForm = () => {
         <FormInput
           name="displayName"
           type="text"
+          autoComplete="username"
           required
           onChange={handleForm}
           value={formFields.displayName}

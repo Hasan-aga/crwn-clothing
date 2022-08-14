@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { css } from "styled-components";
 
 const shrinkLabel = `    bottom: 20px;
     font-size: 14px;
@@ -11,12 +12,22 @@ export const FormInputGroup = styled.div`
   justify-content: space-between;
   text-align: start;
   position: relative;
+  ${(props) =>
+    props.shrink &&
+    css`
+      ${shrinkLabel}
+    `}
+
   .form-input {
-    font-size: 20px;
+    font-size: 16px;
     border: none;
     border-bottom: 1px solid #444;
     transition: all 200ms;
+    text-align: end;
     &:focus {
+      text-align: start;
+      font-size: 20px;
+      padding-left: 10px;
       outline: none;
       border-bottom: 5px solid #444;
     }
@@ -34,10 +45,6 @@ export const FormInputGroup = styled.div`
     position: absolute;
     bottom: -5px;
     transition: all 200ms;
-
-    &.shrink {
-      ${shrinkLabel};
-    }
   }
 `;
 // @mixin shrink-label {
