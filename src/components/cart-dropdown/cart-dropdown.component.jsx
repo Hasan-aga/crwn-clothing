@@ -9,15 +9,21 @@ const CartDropdown = (props) => {
   const { cartProducts } = useContext(CartContext);
   return props.active ? (
     <div className={`cart-dropdown-container`}>
-      <div className="cart-items">
-        {cartProducts.map((product) => (
-          <DropdownItem key={product.id} item={product} />
-        ))}
-      </div>
+      {cartProducts.length === 0 ? (
+        <h4> Your cart is empty</h4>
+      ) : (
+        <Fragment>
+          <div className="cart-items">
+            {cartProducts.map((product) => (
+              <DropdownItem key={product.id} item={product} />
+            ))}
+          </div>
 
-      <Link to="/checkout">
-        <CustomButton className="cart-button" label="go to checkout" />
-      </Link>
+          <Link to="/checkout">
+            <CustomButton className="cart-button" label="go to checkout" />
+          </Link>
+        </Fragment>
+      )}
     </div>
   ) : (
     <Fragment />
