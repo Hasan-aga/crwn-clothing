@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 export const CategoryTitle = styled.div`
   margin-top: 50px;
+
   span {
-    padding-left: 10px;
     font-size: 80px;
     text-transform: uppercase;
-    line-height: 10px;
+    line-height: 50px;
   }
 `;
 
