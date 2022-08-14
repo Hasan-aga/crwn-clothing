@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const CategoryCard = styled.div`
-  min-width: 30%;
-  height: 340px;
+  min-width: 400px;
+  height: 400px;
   flex: 1 1 auto;
   display: flex;
   align-items: center;
