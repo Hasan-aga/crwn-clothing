@@ -1,4 +1,4 @@
-import "./navigation.style.scss";
+import "./navigation.style.jsx";
 import { Link, Outlet } from "react-router-dom";
 import { Fragment, useContext } from "react";
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
@@ -7,6 +7,12 @@ import { CartContext } from "../../contexts/cartContext";
 import { signUserOut } from "../../utils/firebase/firebase.util";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
+import {
+  NavBar,
+  LogoContainer,
+  Links,
+  LinkElement,
+} from "./navigation.style.jsx";
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
@@ -21,46 +27,34 @@ const Navigation = () => {
 
   return (
     <Fragment>
-      <div className="navigation-container">
-        <Link to="/">
+      <NavBar>
+        <LogoContainer to="/">
           <CrwnLogo className="logo" />
-        </Link>
-        <div className="right-links-container">
-          <ul className="links">
-            <li>
-              <Link className="link" to="/greet">
-                greet
-              </Link>
-            </li>
-            <li>
-              <Link className="link" to="/shop">
-                Shop
-              </Link>
-            </li>
-            <li>
-              {currentUser ? (
-                <Link
-                  className="link"
-                  to="/"
-                  onClick={signUserOutAndResetUserContext}
-                >
-                  Sign Out
-                </Link>
-              ) : (
-                <Link className="link" to="/signin">
-                  Sign In
-                </Link>
-              )}
-            </li>
-            <li>
-              <div onClick={toggleDropdown}>
-                <CartIcon />
-              </div>
-            </li>
-          </ul>
-        </div>
+        </LogoContainer>
+        <Links>
+          <li>
+            <LinkElement to="/greet">greet</LinkElement>
+          </li>
+          <li>
+            <LinkElement to="/shop">Shop</LinkElement>
+          </li>
+          <li>
+            {currentUser ? (
+              <LinkElement to="/" onClick={signUserOutAndResetUserContext}>
+                Sign Out
+              </LinkElement>
+            ) : (
+              <LinkElement to="/signin">Sign In</LinkElement>
+            )}
+          </li>
+          <li>
+            <div onClick={toggleDropdown}>
+              <CartIcon />
+            </div>
+          </li>
+        </Links>
         <CartDropdown active={dropDownStatus} />
-      </div>
+      </NavBar>
       <Outlet />
     </Fragment>
   );
