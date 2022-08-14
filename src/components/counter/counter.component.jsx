@@ -1,6 +1,6 @@
-import "./counter.style.scss";
 import { ReactComponent as UpArrow } from "../../assets/up.svg";
 import { ReactComponent as DownArrow } from "../../assets/down.svg";
+import { CounterContainer } from "./counter.style";
 
 const Counter = (props) => {
   const { quantity } = props.item;
@@ -9,7 +9,7 @@ const Counter = (props) => {
 
   console.log(quantity);
   return (
-    <div className="counter-container">
+    <CounterContainer>
       <UpArrow
         title="Increase Quantity"
         onClick={incrementor}
@@ -21,7 +21,7 @@ const Counter = (props) => {
         onClick={decrementor}
         className="counter-arrow"
       />
-    </div>
+    </CounterContainer>
   );
 };
 
