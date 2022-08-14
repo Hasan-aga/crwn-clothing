@@ -1,20 +1,22 @@
 import DropdownItem from "../../components/dropDown-item/dropdown-item.component";
-import "./checkout.style.scss";
+import "./checkout.style.jsx";
 import { CartContext } from "../../contexts/cartContext";
 import { useContext } from "react";
+import { CheckOutContianer, Total } from "./checkout.style.jsx";
 
 const Checkout = () => {
   const { cartProducts, cartTotal } = useContext(CartContext);
 
   return (
-    <div className="checkout-container">
+    <CheckOutContianer>
       {cartProducts.map((product) => (
+        // TODO: refactor reusable css below
         <DropdownItem key={product.id} item={product} />
       ))}
-      <div className="checkout-total">
+      <Total>
         <h3> Total =${cartTotal}</h3>
-      </div>
-    </div>
+      </Total>
+    </CheckOutContianer>
   );
 };
 
