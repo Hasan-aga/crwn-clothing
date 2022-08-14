@@ -76,14 +76,10 @@ const SignIn = () => {
         />
 
         <div className="form-button-group">
-          <CustomButton
-            label={`Sign In`}
-            className="sign-up-button"
-            type="submit"
-          />
+          <CustomButton label={`Sign In`} signUpButton type="submit" />
           <CustomButton
             label={`Sign In with Google`}
-            className=" sign-in-google-button"
+            signInGoogleButton
             onClick={handleLogGoogleUser}
             type="button"
           />

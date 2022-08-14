@@ -71,7 +71,7 @@ const SignupForm = () => {
           onChange={handleForm}
           value={formFields.displayName}
           label="Display Name"
-          minlength="5"
+          minLength="5"
         />
 
         <FormInput
@@ -90,7 +90,7 @@ const SignupForm = () => {
           onChange={handleForm}
           value={formFields.password}
           label="Password"
-          minlength="6"
+          minLength="6"
         />
 
         <FormInput
@@ -101,11 +101,7 @@ const SignupForm = () => {
           value={formFields.confirmPassword}
           label="Confirm Password"
         />
-        <CustomButton
-          label={`Sign Up`}
-          className="sign-up-button"
-          type="submit"
-        />
+        <CustomButton label={`Sign Up`} signUpButton type="submit" />
       </form>
     </div>
   );
