@@ -1,7 +1,6 @@
-import "./category.style.scss";
 import { useContext, useState, useEffect } from "react";
 import { CategoriesContext } from "../../contexts/categoriesContext";
-import ProductPreview from "../../components/category-preview/category-preview.component";
+import CategoryPreview from "../../components/category-preview/category-preview.component";
 import { useParams } from "react-router-dom";
 
 const Category = () => {
@@ -15,7 +14,7 @@ const Category = () => {
 
   return currentCategoryProducts ? (
     <div className="category-full">
-      <ProductPreview
+      <CategoryPreview
         key={category}
         title={"Our collection of " + category}
         products={currentCategoryProducts}

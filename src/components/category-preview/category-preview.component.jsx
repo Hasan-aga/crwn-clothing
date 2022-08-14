@@ -1,26 +1,26 @@
-import "./category-preview.style.scss";
+import "./category-preview.style.jsx";
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import ProductCard from "../product-card/product-card.component";
+import { CategoryTitle, ShopProducts } from "./category-preview.style.jsx";
 
 const CategoryPreview = ({ title, products, previewIndex }) => {
   return (
     <Fragment>
-      <div className="category-title">
+      <CategoryTitle>
         {previewIndex ? (
           <Link to={title}>
-            {" "}
             <span>{title}</span>
           </Link>
         ) : (
           <span>{title}</span>
         )}
-      </div>
-      <div className="shop-products">
+      </CategoryTitle>
+      <ShopProducts>
         {products.slice(0, previewIndex).map((product) => (
           <ProductCard product={product} key={product.id + product.name} />
         ))}
-      </div>
+      </ShopProducts>
     </Fragment>
   );
 };

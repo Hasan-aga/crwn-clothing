@@ -1,7 +1,7 @@
-import "./category.style.scss";
+import { CategoryCard } from "./category.style";
 const Category = ({ id, title, imageUrl }) => {
   return (
-    <div key={id} className="category">
+    <CategoryCard>
       <div
         className="category-background"
         style={{ backgroundImage: `URL(${imageUrl})` }}
@@ -11,7 +11,7 @@ const Category = ({ id, title, imageUrl }) => {
         <h2>{title}</h2>
         <p>Shop Now</p>
       </div>
-    </div>
+    </CategoryCard>
   );
 };
 

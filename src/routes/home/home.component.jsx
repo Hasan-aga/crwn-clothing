@@ -1,6 +1,5 @@
-import Category from "../components/category/category.component";
-import CategoryMenu from "../components/directory/directory-menu.component";
-
+import CategoryMenu from "../../components/directory/directory-menu.component";
+import { HomeContainer } from "./home.style";
 const Home = () => {
   const categories = [
     {
@@ -32,7 +31,7 @@ const Home = () => {
     },
   ];
   return (
-    <div className="directory-container">
+    <HomeContainer>
       {categories.map((category) => {
         return (
           <CategoryMenu
@@ -41,7 +40,7 @@ const Home = () => {
           ></CategoryMenu>
         );
       })}
-    </div>
+    </HomeContainer>
   );
 };
 
