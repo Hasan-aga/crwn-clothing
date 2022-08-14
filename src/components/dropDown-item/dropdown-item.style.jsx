@@ -59,6 +59,12 @@ export const CartItemContainer = styled.div`
         img {
           width: 30%;
           margin-bottom: 10px;
+          transition: all 500ms;
+        }
+
+       &:hover img{
+        transition: all 200ms;
+        transform: scale(1.1);
         }
         .cart-item-text {
           max-width: 90%;
