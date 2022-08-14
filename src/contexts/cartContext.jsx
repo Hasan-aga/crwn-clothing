@@ -22,8 +22,6 @@ export const CartProvider = ({ children }) => {
   };
 
   const getNewProductList = (product) => {
-    console.log(cartProducts);
-    console.log(`adding ${product.name} to ${cartProducts}`);
     if (!cartProducts) return [{ quantity: 1, ...product }];
 
     if (!cartProducts.find((element) => product.name === element.name))
@@ -44,7 +42,6 @@ export const CartProvider = ({ children }) => {
     const newCartProducts = cartProducts.filter(
       (element) => element.name !== product.name
     );
-    console.log("removing...", newCartProducts);
     if (!cartProducts || !newCartProducts) return;
     setCartProducts([...newCartProducts]);
   };

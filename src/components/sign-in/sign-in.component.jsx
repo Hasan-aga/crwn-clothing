@@ -31,7 +31,6 @@ const SignIn = () => {
   const handleSubmit = async (event) => {
     setFormHint("Sign in with Email and password:");
     event.preventDefault();
-    console.log(`signing in with email= ${formFields.email}`);
     try {
       const { user } = await signUserIn(formFields.email, formFields.password);
       resetForm();

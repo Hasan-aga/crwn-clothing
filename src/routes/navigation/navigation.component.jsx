@@ -20,7 +20,6 @@ const Navigation = () => {
 
   const signUserOutAndResetUserContext = async () => {
     const confirmSignOut = window.confirm("are you sure you want to sign out?");
-    console.log(confirmSignOut);
     if (!confirmSignOut) return;
     await signUserOut();
   };

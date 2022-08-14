@@ -7,7 +7,6 @@ const Counter = (props) => {
   const incrementor = props.incrementor;
   const decrementor = props.decrementor;
 
-  console.log(quantity);
   return (
     <CounterContainer>
       <UpArrow
