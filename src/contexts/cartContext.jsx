@@ -13,7 +13,6 @@ export const CartContext = createContext({
 });
 
 const CartReducer = function (state, action) {
-  console.log(`reducer dispatched, action:`, action);
   const { type, payload } = action;
 
   switch (type) {

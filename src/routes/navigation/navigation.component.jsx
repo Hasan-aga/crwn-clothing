@@ -17,7 +17,6 @@ import {
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
   const { dropdownStatus, toggleDropdown } = useContext(CartContext);
-  console.log("navingation dropdown status: ", dropdownStatus);
   const signUserOutAndResetUserContext = async () => {
     const confirmSignOut = window.confirm("are you sure you want to sign out?");
     if (!confirmSignOut) return;

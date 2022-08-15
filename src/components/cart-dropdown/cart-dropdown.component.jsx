@@ -1,16 +1,18 @@
-import "./cart-dropdown.style.scss";
 import CustomButton from "../custom-button/custom-button.component";
 import { Fragment, useContext } from "react";
 import { CartContext } from "../../contexts/cartContext";
 import DropdownItem from "../dropDown-item/dropdown-item.component";
 import { Link } from "react-router-dom";
+import { DropDown, EmptyCart } from "./cart-dropdown.style.jsx";
 
 const CartDropdown = (props) => {
   const { cartProducts } = useContext(CartContext);
   return props.active ? (
-    <div className={`cart-dropdown-container`}>
+    <DropDown>
       {cartProducts.length === 0 ? (
-        <h4> Your cart is empty</h4>
+        <EmptyCart>
+          <span>Your cart is empty</span>
+        </EmptyCart>
       ) : (
         <Fragment>
           <div className="cart-items">
@@ -24,7 +26,7 @@ const CartDropdown = (props) => {
           </Link>
         </Fragment>
       )}
-    </div>
+    </DropDown>
   ) : (
     <Fragment />
   );

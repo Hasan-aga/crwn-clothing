@@ -35,7 +35,6 @@ export const USER_ACTIONS = {
 
 export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(userReducer, INITIAL_USER_STATE);
-  console.log(state);
   const { currentUser } = state;
   const setCurrentUser = (user) => {
     dispatch({ type: USER_ACTIONS.SET_CURRENT_USER, payload: user });
