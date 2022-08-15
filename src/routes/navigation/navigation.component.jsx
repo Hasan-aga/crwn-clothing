@@ -16,8 +16,8 @@ import {
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
-  const { dropDownStatus, toggleDropdown } = useContext(CartContext);
-
+  const { dropdownStatus, toggleDropdown } = useContext(CartContext);
+  console.log("navingation dropdown status: ", dropdownStatus);
   const signUserOutAndResetUserContext = async () => {
     const confirmSignOut = window.confirm("are you sure you want to sign out?");
     if (!confirmSignOut) return;
@@ -52,7 +52,7 @@ const Navigation = () => {
             </div>
           </li>
         </Links>
-        <CartDropdown active={dropDownStatus} />
+        <CartDropdown active={dropdownStatus} />
       </NavBar>
       <Outlet />
     </Fragment>

@@ -6,7 +6,9 @@ import { ProductButton, ProductCardStyle } from "./product-card.style.jsx";
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useContext(CartContext);
-  const addProductToCart = () => addToCart(product);
+  const addProductToCart = () => {
+    addToCart(product);
+  };
 
   return (
     <ProductCardStyle>
