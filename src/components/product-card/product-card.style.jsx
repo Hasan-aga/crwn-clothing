@@ -3,6 +3,13 @@ import CustomButton from "../custom-button/custom-button.component";
 
 export const ProductButton = styled(CustomButton)``;
 
+export const ProductText = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+`;
+
 export const ProductCardStyle = styled.div`
   display: flex;
   flex-direction: column;

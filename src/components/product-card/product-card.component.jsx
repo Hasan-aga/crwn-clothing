@@ -2,7 +2,11 @@ import CustomButton from "../custom-button/custom-button.component";
 import "./product-card.style.jsx";
 import { CartContext } from "../../contexts/cartContext";
 import { useContext } from "react";
-import { ProductButton, ProductCardStyle } from "./product-card.style.jsx";
+import {
+  ProductButton,
+  ProductCardStyle,
+  ProductText,
+} from "./product-card.style.jsx";
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useContext(CartContext);
@@ -22,10 +26,10 @@ const ProductCard = ({ product }) => {
         src={product.imageUrl}
         alt={product.name}
       />
-      <div className="product-text">
+      <ProductText>
         <p>{product.name}</p>
         <p> {product.price}</p>
-      </div>
+      </ProductText>
     </ProductCardStyle>
   );
 };
