@@ -1,8 +1,9 @@
 import { useContext } from "react";
-import { UserContext } from "../contexts/userContext";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../store/user/user.selectors";
 
 const Profile = () => {
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser);
   return (
     <div>
       <h2>Hello {currentUser ? currentUser.email : "no user"}</h2>
