@@ -19,7 +19,6 @@ const Category = () => {
         title={"Our collection of " + category}
         products={currentCategoryProducts}
       />
-      ;
     </div>
   ) : (
     <h3>fetching...</h3>
