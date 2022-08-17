@@ -2,14 +2,18 @@ import { useState, useEffect } from "react";
 import CategoryPreview from "../../components/category-preview/category-preview.component";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectCategories } from "../../store/categories/categories.selector";
+import { selectCategoriesMap } from "../../store/categories/categories.selector";
 
 const Category = () => {
+  console.log("render/re-render category component");
   const { category } = useParams();
-  const categoryMap = useSelector(selectCategories);
-  const [currentCategoryProducts, setCurrentCategoryProducts] = useState([]);
+  const categoryMap = useSelector(selectCategoriesMap);
+  const [currentCategoryProducts, setCurrentCategoryProducts] = useState(
+    categoryMap[category]
+  );
 
   useEffect(() => {
+    console.log("useEffect sets the current products");
     setCurrentCategoryProducts(categoryMap[category]);
   }, [category, categoryMap]);
 
