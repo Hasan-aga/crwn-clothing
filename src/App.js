@@ -9,7 +9,7 @@ import {
 } from "./utils/firebase/firebase.util";
 import { setCurrentUser } from "./store/user/user.action";
 import { useDispatch } from "react-redux";
-import { setCategoryMap } from "./store/categories/categories.action";
+import { setCategoryArray } from "./store/categories/categories.action";
 
 import SignPage from "./routes/sign-page/sign-page.component";
 import Profile from "./routes/profile.component";
@@ -29,7 +29,7 @@ const App = () => {
   useEffect(() => {
     const getDataFromServer = async () => {
       const result = await getCategoriesAndDocuments();
-      dispatch(setCategoryMap(result));
+      dispatch(setCategoryArray(result));
     };
     getDataFromServer();
   }, []);
