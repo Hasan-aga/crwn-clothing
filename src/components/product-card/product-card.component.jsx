@@ -1,17 +1,18 @@
-import CustomButton from "../custom-button/custom-button.component";
 import "./product-card.style.jsx";
-import { CartContext } from "../../contexts/cartContext";
-import { useContext } from "react";
 import {
   ProductButton,
   ProductCardStyle,
   ProductText,
 } from "./product-card.style.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../store/cart/cart-action.js";
+import { selectCartProducts } from "../../store/cart/cart.selector.js";
 
 const ProductCard = ({ product }) => {
-  const { addToCart } = useContext(CartContext);
+  const dispatch = useDispatch();
+  const existingProducts = useSelector(selectCartProducts);
   const addProductToCart = () => {
-    addToCart(product);
+    dispatch(addToCart(product, existingProducts));
   };
 
   return (

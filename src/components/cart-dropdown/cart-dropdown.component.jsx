@@ -1,12 +1,13 @@
 import CustomButton from "../custom-button/custom-button.component";
-import { Fragment, useContext } from "react";
-import { CartContext } from "../../contexts/cartContext";
+import { Fragment } from "react";
 import DropdownItem from "../dropDown-item/dropdown-item.component";
 import { Link } from "react-router-dom";
 import { DropDown, EmptyCart } from "./cart-dropdown.style.jsx";
+import { selectCartProducts } from "../../store/cart/cart.selector";
+import { useSelector } from "react-redux";
 
 const CartDropdown = (props) => {
-  const { cartProducts } = useContext(CartContext);
+  const cartProducts = useSelector(selectCartProducts);
   return props.active ? (
     <DropDown>
       {cartProducts.length === 0 ? (

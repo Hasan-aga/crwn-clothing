@@ -1,16 +1,23 @@
 import "./dropdown-item.style.jsx";
 import { ReactComponent as Trash } from "../../assets/trash.svg";
-import { useContext } from "react";
-import { CartContext } from "../../contexts/cartContext";
 import Counter from "../counter/counter.component";
 import { CartItemContainer } from "./dropdown-item.style.jsx";
-const DropdownItem = ({ item, checkoutGrid }) => {
-  const { removeProductFromCart, changeProductQuantity } =
-    useContext(CartContext);
+import {
+  changeProductQuantity,
+  removeProductFromCart,
+} from "../../store/cart/cart-action.js";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCartProducts } from "../../store/cart/cart.selector.js";
 
-  const increment = () => changeProductQuantity(item);
-  const decrement = () => changeProductQuantity(item, false);
-  const removeProductHandler = () => removeProductFromCart(item);
+const DropdownItem = ({ item, checkoutGrid }) => {
+  const dispatch = useDispatch();
+  const existingCartProducts = useSelector(selectCartProducts);
+  const increment = () =>
+    dispatch(changeProductQuantity(item, existingCartProducts));
+  const decrement = () =>
+    dispatch(changeProductQuantity(item, existingCartProducts, false));
+  const removeProductHandler = () =>
+    dispatch(removeProductFromCart(item, existingCartProducts));
   return checkoutGrid ? (
     <CartItemContainer checkoutItem>
       <img alt="item.name" src={item.imageUrl} />

@@ -1,8 +1,7 @@
 import "./navigation.style.jsx";
 import { Outlet } from "react-router-dom";
-import { Fragment, useContext } from "react";
+import { Fragment } from "react";
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
-import { CartContext } from "../../contexts/cartContext";
 import { signUserOut } from "../../utils/firebase/firebase.util";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
@@ -12,16 +11,24 @@ import {
   Links,
   LinkElement,
 } from "./navigation.style.jsx";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser } from "../../store/user/user.selectors.js";
+import { selectDropdownStatus } from "../../store/cart/cart.selector.js";
+import { toggleDropdown } from "../../store/cart/cart-action.js";
 
 const Navigation = () => {
+  const dispatch = useDispatch();
+  const dropdownStatus = useSelector(selectDropdownStatus);
+
   const currentUser = useSelector(selectCurrentUser);
-  const { dropdownStatus, toggleDropdown } = useContext(CartContext);
   const signUserOutAndResetUserContext = async () => {
     const confirmSignOut = window.confirm("are you sure you want to sign out?");
     if (!confirmSignOut) return;
     await signUserOut();
+  };
+
+  const toggleDropdownMenu = () => {
+    dispatch(toggleDropdown(dropdownStatus));
   };
 
   return (
@@ -47,7 +54,7 @@ const Navigation = () => {
             )}
           </li>
           <li>
-            <div onClick={toggleDropdown}>
+            <div onClick={toggleDropdownMenu}>
               <CartIcon />
             </div>
           </li>

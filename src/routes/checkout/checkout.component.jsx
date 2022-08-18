@@ -1,16 +1,18 @@
+import { useSelector } from "react-redux";
 import DropdownItem from "../../components/dropDown-item/dropdown-item.component";
+import {
+  selectCartProducts,
+  selectCartTotal,
+} from "../../store/cart/cart.selector";
 import "./checkout.style.jsx";
-import { CartContext } from "../../contexts/cartContext";
-import { useContext } from "react";
 import { CheckOutContianer, Total } from "./checkout.style.jsx";
 
 const Checkout = () => {
-  const { cartProducts, cartTotal } = useContext(CartContext);
-
+  const cartTotal = useSelector(selectCartTotal);
+  const cartProducts = useSelector(selectCartProducts);
   return (
     <CheckOutContianer>
       {cartProducts.map((product) => (
-        // TODO: refactor reusable css below
         <DropdownItem checkoutGrid key={product.id} item={product} />
       ))}
       <Total>
