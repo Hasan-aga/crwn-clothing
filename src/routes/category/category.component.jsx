@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import { selectCategoriesMap } from "../../store/categories/categories.selector";
 
 const Category = () => {
-  console.log("render/re-render category component");
   const { category } = useParams();
   const categoryMap = useSelector(selectCategoriesMap);
   const [currentCategoryProducts, setCurrentCategoryProducts] = useState(
@@ -13,7 +12,6 @@ const Category = () => {
   );
 
   useEffect(() => {
-    console.log("useEffect sets the current products");
     setCurrentCategoryProducts(categoryMap[category]);
   }, [category, categoryMap]);
 
