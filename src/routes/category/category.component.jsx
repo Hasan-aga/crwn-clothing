@@ -2,11 +2,16 @@ import { useState, useEffect } from "react";
 import CategoryPreview from "../../components/category-preview/category-preview.component";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectCategoriesMap } from "../../store/categories/categories.selector";
+import {
+  selectCategoriesAreFetching,
+  selectCategoriesMap,
+} from "../../store/categories/categories.selector";
+import Spinner from "../../components/spinner/spinner.component";
 
 const Category = () => {
   const { category } = useParams();
   const categoryMap = useSelector(selectCategoriesMap);
+  const isFetchingCategories = useSelector(selectCategoriesAreFetching);
   const [currentCategoryProducts, setCurrentCategoryProducts] = useState(
     categoryMap[category]
   );
@@ -15,7 +20,7 @@ const Category = () => {
     setCurrentCategoryProducts(categoryMap[category]);
   }, [category, categoryMap]);
 
-  return currentCategoryProducts ? (
+  return !isFetchingCategories ? (
     <div className="category-full">
       <CategoryPreview
         key={category}
@@ -24,7 +29,7 @@ const Category = () => {
       />
     </div>
   ) : (
-    <h3>fetching...</h3>
+    <Spinner />
   );
 };
 

@@ -1,11 +1,17 @@
 import { Fragment } from "react";
 import { useSelector } from "react-redux";
 import CategoryPreview from "../../components/category-preview/category-preview.component";
-import { selectCategoriesMap } from "../../store/categories/categories.selector";
+import Spinner from "../../components/spinner/spinner.component";
+import {
+  selectCategoriesMap,
+  selectCategoriesAreFetching,
+} from "../../store/categories/categories.selector";
 
 const CategoriesPreview = () => {
   const categoryMap = useSelector(selectCategoriesMap);
-  return (
+  const isFetchingCategories = useSelector(selectCategoriesAreFetching);
+
+  return !isFetchingCategories ? (
     <Fragment>
       {Object.keys(categoryMap).map((title) => {
         const products = categoryMap[title];
@@ -19,6 +25,8 @@ const CategoriesPreview = () => {
         );
       })}
     </Fragment>
+  ) : (
+    <Spinner />
   );
 };
 
