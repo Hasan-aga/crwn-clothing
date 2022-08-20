@@ -20,3 +20,8 @@ export const selectCategoriesMap = createSelector(
     }, {});
   }
 );
+
+export const selectCategoriesAreFetching = createSelector(
+  [selectCategoriesReducer],
+  (categorySlice) => categorySlice.fetching
+);
