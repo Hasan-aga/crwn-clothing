@@ -27,7 +27,7 @@ const middleWares = [
 const persistConfig = {
   key: "root", //save everything
   storage, //save in local storage
-  blacklist: ["user"], //do not save user
+  blacklist: ["user", "categories"], //do not save user and categories
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
