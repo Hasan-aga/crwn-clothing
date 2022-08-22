@@ -39,3 +39,9 @@ export const signUpSuccess = (user, displayName) => {
     payload: { currenUser: user, displayName },
   };
 };
+export const signUpFail = (error) => {
+  return {
+    type: USER_TYPES.SIGN_UP_FAIL,
+    payload: error,
+  };
+};

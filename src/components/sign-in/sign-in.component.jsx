@@ -15,7 +15,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import {
   selectCurrentUser,
-  selectUserError,
+  selectUserSignInError,
 } from "../../store/user/user.selectors";
 import { useEffect } from "react";
 
@@ -26,7 +26,7 @@ const defaultFormFields = {
 };
 
 const SignIn = () => {
-  const userError = useSelector(selectUserError);
+  const userError = useSelector(selectUserSignInError);
   const currentUser = useSelector(selectCurrentUser);
   const navigateTo = useNavigate();
   const dispatch = useDispatch();
@@ -45,7 +45,6 @@ const SignIn = () => {
 
   const handleSignInError = () => {
     if (userError) {
-      console.log(userError);
       setFormHint(`${userError}`);
       return;
     }

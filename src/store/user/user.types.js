@@ -10,4 +10,5 @@ export const USER_TYPES = {
   SIGN_OUT_FAIL: "user/SIGN_OUT_FAIL",
   SIGN_UP_START: "user/SIGN_UP_START",
   SIGN_UP_SUCCESS: "user/SIGN_UP_SUCCESS",
+  SIGN_UP_FAIL: "user/SIGN_UP_FAIL",
 };

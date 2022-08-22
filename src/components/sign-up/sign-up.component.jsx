@@ -1,5 +1,5 @@
 import "./sign-up.style.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   addUserToAuthByEmailAndPassword,
   createUserDocumentFromAuth,
@@ -10,7 +10,10 @@ import CustomButton from "../custom-button/custom-button.component";
 import { useDispatch, useSelector } from "react-redux";
 import { signUpStart } from "../../store/user/user.action";
 import { useNavigate } from "react-router-dom";
-import { selectUserError } from "../../store/user/user.selectors";
+import {
+  selectCurrentUser,
+  selectUserSignUpError,
+} from "../../store/user/user.selectors";
 
 const defaultFormFields = {
   displayName: "",
@@ -20,7 +23,8 @@ const defaultFormFields = {
 };
 
 const SignupForm = () => {
-  const userError = useSelector(selectUserError);
+  const userError = useSelector(selectUserSignUpError);
+  const currentUser = useSelector(selectCurrentUser);
   const navigateTo = useNavigate();
   const dispatch = useDispatch();
   const [formFields, setFormFields] = useState(defaultFormFields);
@@ -44,31 +48,19 @@ const SignupForm = () => {
     dispatch(
       signUpStart(formFields.email, formFields.password, formFields.displayName)
     );
+  };
+
+  const handleSignInError = () => {
     if (userError) {
-      console.log(userError);
-      setFormHint(`${userError}`);
+      setFormHint(`${userError.code}`);
       return;
     }
-    if (!userError) navigateTo("/greet");
-    // try {
-    //   if (formFields.password !== formFields.confirmPassword) {
-    //     throw new Error(`pAsSwOrDs dont match`);
-    //   }
-
-    //   const { user } = await addUserToAuthByEmailAndPassword(
-    // formFields.email,
-    // formFields.password
-    //   );
-
-    //   await createUserDocumentFromAuth(user, {
-    //     displayName: formFields.displayName,
-    //   });
-    //   resetForm();
-    // } catch (error) {
-    //   console.error(`failed to authenticate, ${error.message}`);
-    //   setFormHint(error.message);
-    // }
+    if (!userError && currentUser) navigateTo("/greet");
   };
+
+  useEffect(() => {
+    handleSignInError();
+  }, [userError, currentUser]);
 
   return (
     <div className="sign-form">

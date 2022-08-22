@@ -13,6 +13,7 @@ import {
   signInSuccess,
   signOutFail,
   signOutSuccess,
+  signUpFail,
 } from "./user.action";
 
 function* saveUserInDatabase(userAuth, addtionalInfo = {}) {
@@ -104,7 +105,7 @@ function* processSignUp(action) {
     );
     yield call(saveUserInDatabase, user, { displayName });
   } catch (error) {
-    yield put(signInFail(error));
+    yield put(signUpFail(error));
   }
 }
 
