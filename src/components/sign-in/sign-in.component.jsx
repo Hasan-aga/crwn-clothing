@@ -13,7 +13,11 @@ import {
   googleSignInStart,
 } from "../../store/user/user.action";
 import { useNavigate } from "react-router-dom";
-import { selectUserError } from "../../store/user/user.selectors";
+import {
+  selectCurrentUser,
+  selectUserError,
+} from "../../store/user/user.selectors";
+import { useEffect } from "react";
 
 const defaultFormFields = {
   email: "",
@@ -23,6 +27,7 @@ const defaultFormFields = {
 
 const SignIn = () => {
   const userError = useSelector(selectUserError);
+  const currentUser = useSelector(selectCurrentUser);
   const navigateTo = useNavigate();
   const dispatch = useDispatch();
   const [formFields, setFormFields] = useState(defaultFormFields);
@@ -44,14 +49,8 @@ const SignIn = () => {
       setFormHint(`${userError}`);
       return;
     }
-    if (!userError) navigateTo("/greet");
+    if (!userError && currentUser) navigateTo("/greet");
   };
-
-  const dispatchSignIn = (email, password) =>
-    new Promise((resolve, reject) => {
-      dispatch(emailSignInStart(email, password));
-      resolve();
-    });
 
   const handleSubmit = async (event) => {
     setFormHint("Sign in with Email and password:");
@@ -63,18 +62,19 @@ const SignIn = () => {
     //   console.error(error);
     //   setFormHint(error.message);
     // }
-    dispatchSignIn(formFields.email, formFields.password).then(() =>
-      handleSignInError()
-    );
+    dispatch(emailSignInStart(formFields.email, formFields.password));
     resetForm();
   };
 
   const handleLogGoogleUser = async () => {
     dispatch(googleSignInStart());
-    handleSignInError();
     // const { user } = await signInWithPop();
     // await createUserDocumentFromAuth(user);
   };
+
+  useEffect(() => {
+    handleSignInError();
+  }, [userError, currentUser]);
 
   return (
     <div className="sign-form">
