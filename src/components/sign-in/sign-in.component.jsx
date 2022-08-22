@@ -7,6 +7,13 @@ import {
   signUserIn,
 } from "../../utils/firebase/firebase.util";
 import "./sign-in.style.scss";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  emailSignInStart,
+  googleSignInStart,
+} from "../../store/user/user.action";
+import { useNavigate } from "react-router-dom";
+import { selectUserError } from "../../store/user/user.selectors";
 
 const defaultFormFields = {
   email: "",
@@ -15,6 +22,9 @@ const defaultFormFields = {
 };
 
 const SignIn = () => {
+  const userError = useSelector(selectUserError);
+  const navigateTo = useNavigate();
+  const dispatch = useDispatch();
   const [formFields, setFormFields] = useState(defaultFormFields);
   const [formHint, setFormHint] = useState("Sign in with Email and password:");
 
@@ -28,21 +38,42 @@ const SignIn = () => {
     setFormFields({ ...formFields });
   };
 
+  const handleSignInError = () => {
+    if (userError) {
+      console.log(userError);
+      setFormHint(`${userError}`);
+      return;
+    }
+    if (!userError) navigateTo("/greet");
+  };
+
+  const dispatchSignIn = (email, password) =>
+    new Promise((resolve, reject) => {
+      dispatch(emailSignInStart(email, password));
+      resolve();
+    });
+
   const handleSubmit = async (event) => {
     setFormHint("Sign in with Email and password:");
     event.preventDefault();
-    try {
-      const { user } = await signUserIn(formFields.email, formFields.password);
-      resetForm();
-    } catch (error) {
-      console.error(error);
-      setFormHint(error.message);
-    }
+    // try {
+    //   const { user } = await signUserIn(formFields.email, formFields.password);
+    //   resetForm();
+    // } catch (error) {
+    //   console.error(error);
+    //   setFormHint(error.message);
+    // }
+    dispatchSignIn(formFields.email, formFields.password).then(() =>
+      handleSignInError()
+    );
+    resetForm();
   };
 
   const handleLogGoogleUser = async () => {
-    const { user } = await signInWithPop();
-    await createUserDocumentFromAuth(user);
+    dispatch(googleSignInStart());
+    handleSignInError();
+    // const { user } = await signInWithPop();
+    // await createUserDocumentFromAuth(user);
   };
 
   return (

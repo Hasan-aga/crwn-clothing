@@ -15,16 +15,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser } from "../../store/user/user.selectors.js";
 import { selectDropdownStatus } from "../../store/cart/cart.selector.js";
 import { toggleDropdown } from "../../store/cart/cart-action.js";
+import { signOutStart } from "../../store/user/user.action.js";
 
 const Navigation = () => {
   const dispatch = useDispatch();
   const dropdownStatus = useSelector(selectDropdownStatus);
 
   const currentUser = useSelector(selectCurrentUser);
-  const signUserOutAndResetUserContext = async () => {
+  const signUserOutAndResetUserContext = () => {
     const confirmSignOut = window.confirm("are you sure you want to sign out?");
     if (!confirmSignOut) return;
-    await signUserOut();
+    dispatch(signOutStart());
   };
 
   const toggleDropdownMenu = () => {
@@ -46,7 +47,10 @@ const Navigation = () => {
           </li>
           <li>
             {currentUser ? (
-              <LinkElement to="/" onClick={signUserOutAndResetUserContext}>
+              <LinkElement
+                to="/signin"
+                onClick={signUserOutAndResetUserContext}
+              >
                 Sign Out
               </LinkElement>
             ) : (

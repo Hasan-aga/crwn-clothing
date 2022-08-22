@@ -7,6 +7,10 @@ import {
 } from "../../utils/firebase/firebase.util";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
+import { useDispatch, useSelector } from "react-redux";
+import { signUpStart } from "../../store/user/user.action";
+import { useNavigate } from "react-router-dom";
+import { selectUserError } from "../../store/user/user.selectors";
 
 const defaultFormFields = {
   displayName: "",
@@ -16,6 +20,9 @@ const defaultFormFields = {
 };
 
 const SignupForm = () => {
+  const userError = useSelector(selectUserError);
+  const navigateTo = useNavigate();
+  const dispatch = useDispatch();
   const [formFields, setFormFields] = useState(defaultFormFields);
   const [formHint, setFormHint] = useState("Sign up with Email and Password:");
 
@@ -32,25 +39,35 @@ const SignupForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      if (formFields.password !== formFields.confirmPassword) {
-        throw new Error(`pAsSwOrDs dont match`);
-      }
 
-      const { user } = await addUserToAuthByEmailAndPassword(
-        auth,
-        formFields.email,
-        formFields.password
-      );
-
-      await createUserDocumentFromAuth(user, {
-        displayName: formFields.displayName,
-      });
-      resetForm();
-    } catch (error) {
-      console.error(`failed to authenticate, ${error.message}`);
-      setFormHint(error.message);
+    resetForm();
+    dispatch(
+      signUpStart(formFields.email, formFields.password, formFields.displayName)
+    );
+    if (userError) {
+      console.log(userError);
+      setFormHint(`${userError}`);
+      return;
     }
+    if (!userError) navigateTo("/greet");
+    // try {
+    //   if (formFields.password !== formFields.confirmPassword) {
+    //     throw new Error(`pAsSwOrDs dont match`);
+    //   }
+
+    //   const { user } = await addUserToAuthByEmailAndPassword(
+    // formFields.email,
+    // formFields.password
+    //   );
+
+    //   await createUserDocumentFromAuth(user, {
+    //     displayName: formFields.displayName,
+    //   });
+    //   resetForm();
+    // } catch (error) {
+    //   console.error(`failed to authenticate, ${error.message}`);
+    //   setFormHint(error.message);
+    // }
   };
 
   return (

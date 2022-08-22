@@ -51,9 +51,9 @@ export const createUserDocumentFromAuth = async (
   const userDocRef = doc(db, "users", userAuth.uid);
   const userData = await getDoc(userDocRef);
 
-  //   if user doc exists, return the ref
+  //   if user doc exists, return the user auth info
   if (userData.exists()) {
-    return userDocRef;
+    return userData;
   }
 
   // if user has no doc, create one
@@ -67,14 +67,13 @@ export const createUserDocumentFromAuth = async (
       createdAt,
       ...addtionaInformation,
     });
-  } catch (error) {}
+    return userData;
+  } catch (error) {
+    console.error("error in saving authenticated user to firestore ", error);
+  }
 };
 
-export const addUserToAuthByEmailAndPassword = async (
-  auth,
-  email,
-  password
-) => {
+export const addUserToAuthByEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
   return await createUserWithEmailAndPassword(auth, email, password);
 };
@@ -107,6 +106,15 @@ export const signUserOut = async () => {
 
 export const onAuthStateChangedListener = (callback) => {
   return onAuthStateChanged(auth, callback);
+};
+
+export const getCurrentUser = () => {
+  return new Promise((resolve) => {
+    const unsub = onAuthStateChanged(auth, (user) => {
+      unsub();
+      resolve(user);
+    });
+  });
 };
 
 // database
