@@ -15,6 +15,6 @@ export const historyReducer = (state = INITIAL_HISTORY_STATE, action) => {
       };
 
     default:
-      return { ...state };
+      return state;
   }
 };
