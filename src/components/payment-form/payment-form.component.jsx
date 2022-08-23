@@ -6,10 +6,14 @@ import {
   SmallSpinner,
 } from "./payemnt-form.style";
 import { useState } from "react";
-import { selectCartTotal } from "../../store/cart/cart.selector";
+import {
+  selectCartProducts,
+  selectCartTotal,
+} from "../../store/cart/cart.selector";
 import { selectCurrentUser } from "../../store/user/user.selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../../store/cart/cart-action";
+import { saveCurrentCartToHistory } from "../../store/history/history.actions";
 
 const PaymentForm = () => {
   const stripe = useStripe();
@@ -20,6 +24,7 @@ const PaymentForm = () => {
   const [isMakingPayment, setIsMakingPayment] = useState(false);
 
   const dispatch = useDispatch();
+  const cartProducts = useSelector(selectCartProducts);
 
   const paymentHandler = async (e) => {
     e.preventDefault();
@@ -56,6 +61,7 @@ const PaymentForm = () => {
       if (paymentResult.paymentIntent.status === "succeeded") {
         alert("Payment Successful");
         setIsMakingPayment(false);
+        dispatch(saveCurrentCartToHistory(cartProducts));
         dispatch(clearCart());
       }
     }
