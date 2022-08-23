@@ -16,6 +16,7 @@ import { selectCurrentUser } from "../../store/user/user.selectors.js";
 import { selectDropdownStatus } from "../../store/cart/cart.selector.js";
 import { toggleDropdown } from "../../store/cart/cart-action.js";
 import { signOutStart } from "../../store/user/user.action.js";
+import { useOutsideClick } from "../../custom-hooks/useClickOutside.js";
 
 const Navigation = () => {
   const dispatch = useDispatch();
@@ -31,6 +32,12 @@ const Navigation = () => {
   const toggleDropdownMenu = () => {
     dispatch(toggleDropdown(dropdownStatus));
   };
+
+  const closeDropdown = () => {
+    dispatch(toggleDropdown(true));
+  };
+
+  const ref = useOutsideClick(closeDropdown);
 
   return (
     <Fragment>
@@ -58,7 +65,7 @@ const Navigation = () => {
             )}
           </li>
           <li>
-            <div onClick={toggleDropdownMenu}>
+            <div ref={ref} onClick={toggleDropdownMenu}>
               <CartIcon />
             </div>
           </li>

@@ -16,6 +16,7 @@ import { clearCart } from "../../store/cart/cart-action";
 import { saveCurrentCartToHistory } from "../../store/history/history.actions";
 import { useNavigate } from "react-router-dom";
 import { selectHistoryBoughtItems } from "../../store/history/history.selector";
+import { Checkmark } from "react-checkmark";
 
 const PaymentForm = () => {
   const stripe = useStripe();
@@ -24,6 +25,7 @@ const PaymentForm = () => {
   const currentUser = useSelector(selectCurrentUser);
   const amount = useSelector(selectCartTotal);
   const [isMakingPayment, setIsMakingPayment] = useState(false);
+  const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
 
   const dispatch = useDispatch();
   const cartProducts = useSelector(selectCartProducts);
@@ -63,12 +65,13 @@ const PaymentForm = () => {
       alert("Error ", paymentResult.error);
     } else {
       if (paymentResult.paymentIntent.status === "succeeded") {
-        alert("Payment Successful");
         setIsMakingPayment(false);
+        setIsPaymentSuccessful(true);
+        alert("Payment Successful");
         dispatch(
           saveCurrentCartToHistory(cartProducts, existingHistoryProducts)
         );
-        navigateTo("/greet");
+        // navigateTo("/greet");
         dispatch(clearCart());
       }
     }
@@ -82,7 +85,9 @@ const PaymentForm = () => {
         {isMakingPayment ? (
           <SmallSpinner />
         ) : (
-          <CustomButton label={`Pay now`} />
+          <CustomButton
+            label={isPaymentSuccessful ? <Checkmark /> : "Pay now"}
+          />
         )}
       </FormContainer>
     </PaymentFormContainer>
