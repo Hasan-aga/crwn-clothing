@@ -14,6 +14,8 @@ import { selectCurrentUser } from "../../store/user/user.selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../../store/cart/cart-action";
 import { saveCurrentCartToHistory } from "../../store/history/history.actions";
+import { useNavigate } from "react-router-dom";
+import { selectHistoryBoughtItems } from "../../store/history/history.selector";
 
 const PaymentForm = () => {
   const stripe = useStripe();
@@ -25,6 +27,8 @@ const PaymentForm = () => {
 
   const dispatch = useDispatch();
   const cartProducts = useSelector(selectCartProducts);
+  const existingHistoryProducts = useSelector(selectHistoryBoughtItems);
+  const navigateTo = useNavigate();
 
   const paymentHandler = async (e) => {
     e.preventDefault();
@@ -61,7 +65,10 @@ const PaymentForm = () => {
       if (paymentResult.paymentIntent.status === "succeeded") {
         alert("Payment Successful");
         setIsMakingPayment(false);
-        dispatch(saveCurrentCartToHistory(cartProducts));
+        dispatch(
+          saveCurrentCartToHistory(cartProducts, existingHistoryProducts)
+        );
+        navigateTo("/greet");
         dispatch(clearCart());
       }
     }

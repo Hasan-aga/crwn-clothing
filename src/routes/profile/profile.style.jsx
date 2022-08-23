@@ -1,17 +1,17 @@
 import styled from "styled-components";
-
 export const BoughtProductListContainer = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 20px;
+  row-gap: 60px;
+  padding: 50px;
+  border: solid 1px #999;
+
+  & h3 {
+    align-self: center;
+  }
 `;
 
-export const BoughtProductsList = styled.div`
-  display: flex;
-  column-gap: 10px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  img {
-    width: 100px;
-  }
+export const ProductGroupContainer = styled(BoughtProductListContainer)`
+  row-gap: 100px;
+  border: none;
 `;
