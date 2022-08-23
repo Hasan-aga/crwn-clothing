@@ -1,4 +1,12 @@
 import styled from "styled-components";
+import { SpinnerContainer } from "../spinner/spinner.styles";
+
+export const SmallSpinner = styled(SpinnerContainer)`
+  width: 10px;
+  height: 10px;
+  padding: 10px;
+  margin: 0 auto;
+`;
 
 export const PaymentFormContainer = styled.div`
   display: flex;
