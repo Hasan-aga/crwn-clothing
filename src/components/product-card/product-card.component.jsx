@@ -29,7 +29,7 @@ const ProductCard = ({ product }) => {
       />
       <ProductText>
         <p>{product.name}</p>
-        <p> {product.price}</p>
+        <p> ${product.price}</p>
       </ProductText>
     </ProductCardStyle>
   );
