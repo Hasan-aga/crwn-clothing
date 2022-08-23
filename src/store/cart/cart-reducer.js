@@ -19,6 +19,11 @@ export const cartReducer = function (state = INITIAL_CART_STATE, action) {
         ...state,
         dropdownStatus: payload,
       };
+    case CART_TYPES.CLEAR_CART:
+      return {
+        ...state,
+        cartProducts: [],
+      };
     default:
       return state;
   }

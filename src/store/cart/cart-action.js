@@ -27,6 +27,10 @@ export const removeProductFromCart = (product, cartProducts) => {
   return { type: CART_TYPES.SET_CART_PRODUCTS, payload: [...newCartProducts] };
 };
 
+export const clearCart = () => {
+  return { type: CART_TYPES.CLEAR_CART };
+};
+
 export const changeProductQuantity = (
   product,
   cartProducts,

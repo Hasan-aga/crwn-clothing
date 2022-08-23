@@ -8,7 +8,8 @@ import {
 import { useState } from "react";
 import { selectCartTotal } from "../../store/cart/cart.selector";
 import { selectCurrentUser } from "../../store/user/user.selectors";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { clearCart } from "../../store/cart/cart-action";
 
 const PaymentForm = () => {
   const stripe = useStripe();
@@ -17,6 +18,8 @@ const PaymentForm = () => {
   const currentUser = useSelector(selectCurrentUser);
   const amount = useSelector(selectCartTotal);
   const [isMakingPayment, setIsMakingPayment] = useState(false);
+
+  const dispatch = useDispatch();
 
   const paymentHandler = async (e) => {
     e.preventDefault();
@@ -53,6 +56,7 @@ const PaymentForm = () => {
       if (paymentResult.paymentIntent.status === "succeeded") {
         alert("Payment Successful");
         setIsMakingPayment(false);
+        dispatch(clearCart());
       }
     }
   };
