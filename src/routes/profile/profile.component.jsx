@@ -22,13 +22,16 @@ const Profile = () => {
         {boughItemGroups.length > 0
           ? boughItemGroups.map((itemGroup) => {
               return (
-                <BoughtProductListContainer>
+                <BoughtProductListContainer id={itemGroup.date}>
                   <h3>
                     {Intl.DateTimeFormat("en-GB", options).format(
                       new Date(itemGroup.date)
                     )}
                   </h3>
-                  <BoughtProductList products={itemGroup.boughtTogether} />
+                  <BoughtProductList
+                    id={itemGroup.date + 1}
+                    products={itemGroup.boughtTogether}
+                  />
                 </BoughtProductListContainer>
               );
             })
