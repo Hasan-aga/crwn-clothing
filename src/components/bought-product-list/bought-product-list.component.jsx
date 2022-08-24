@@ -1,6 +1,7 @@
 import { BoughtProductsList, VerticalBox } from "./bought-product-list.style";
 
 const BoughtProductList = ({ products }) => {
+  if (!products) return;
   return (
     <div>
       {products.map((item) => (
