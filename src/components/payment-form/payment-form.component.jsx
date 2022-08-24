@@ -71,10 +71,15 @@ const PaymentForm = () => {
         dispatch(
           saveCurrentCartToHistory(cartProducts, existingHistoryProducts)
         );
-        // navigateTo("/greet");
         dispatch(clearCart());
       }
     }
+  };
+
+  const navigateToGreet = () => {
+    setTimeout(() => {
+      navigateTo("/greet");
+    }, 1000);
   };
 
   return (
@@ -86,6 +91,7 @@ const PaymentForm = () => {
           <SmallSpinner />
         ) : (
           <CustomButton
+            onAnimationEnd={navigateToGreet}
             label={isPaymentSuccessful ? <Checkmark /> : "Pay now"}
           />
         )}

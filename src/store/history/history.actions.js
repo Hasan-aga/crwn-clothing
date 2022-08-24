@@ -6,7 +6,7 @@ export const saveCurrentCartToHistory = (
 ) => {
   const productGroup = {
     date: new Date(),
-    boughtItems: currentCartProducts,
+    boughtTogether: currentCartProducts,
   };
   return {
     type: HISTORY_TYPES.SAVE_CURRENT_CART,

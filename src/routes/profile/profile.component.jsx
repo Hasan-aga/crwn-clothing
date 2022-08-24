@@ -28,7 +28,7 @@ const Profile = () => {
                     itemGroup.date
                   )}{" "}
                 </h3>
-                <BoughtProductList products={itemGroup.boughtItems} />
+                <BoughtProductList products={itemGroup.boughtTogether} />
               </BoughtProductListContainer>
             ))
           : "This is where your transaction history would be displayed"}
