@@ -20,17 +20,18 @@ const Profile = () => {
       <h2>Hello {currentUser ? currentUser.email : "no user"}</h2>
       <ProductGroupContainer>
         {boughItemGroups.length > 0
-          ? boughItemGroups.map((itemGroup) => (
-              <BoughtProductListContainer>
-                <h3>
-                  {" "}
-                  {Intl.DateTimeFormat("en-GB", options).format(
-                    itemGroup.date
-                  )}{" "}
-                </h3>
-                <BoughtProductList products={itemGroup.boughtTogether} />
-              </BoughtProductListContainer>
-            ))
+          ? boughItemGroups.map((itemGroup) => {
+              return (
+                <BoughtProductListContainer>
+                  <h3>
+                    {Intl.DateTimeFormat("en-GB", options).format(
+                      new Date(itemGroup.date)
+                    )}
+                  </h3>
+                  <BoughtProductList products={itemGroup.boughtTogether} />
+                </BoughtProductListContainer>
+              );
+            })
           : "This is where your transaction history would be displayed"}
       </ProductGroupContainer>
     </div>
