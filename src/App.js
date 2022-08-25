@@ -14,8 +14,10 @@ import Checkout from "./routes/checkout/checkout.component";
 
 const App = () => {
   const dispatch = useDispatch();
-  useEffect(() => {}, []);
-  dispatch(checkUserSession());
+  useEffect(() => {
+    dispatch(checkUserSession());
+  }, []);
+
   // load the categories
   useEffect(() => {
     dispatch(startFetchCategories());
