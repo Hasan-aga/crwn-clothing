@@ -1,3 +1,4 @@
+import { AnyAction } from "redux";
 import { CategoryActionsType } from "./categories.action";
 import { CATEGORIES_TYPES, Category } from "./categories.types";
 
@@ -15,7 +16,7 @@ const INIT_CATEGORIES = {
 
 export const categoriesReducer = (
   state: CategoriesState = INIT_CATEGORIES,
-  action: CategoryActionsType
+  action: AnyAction
 ) => {
   switch (action.type) {
     case CATEGORIES_TYPES.FETCHING_CURRENT_CATEGORIES:
@@ -24,8 +25,5 @@ export const categoriesReducer = (
       return { ...state, fetching: false, categoryArray: action.payload };
     case CATEGORIES_TYPES.CURRENT_CATEGORIES_FAIL_FETCH:
       return { ...state, fetching: false, error: action.payload };
-
-    default:
-      return state;
   }
 };
