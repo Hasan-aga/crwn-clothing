@@ -5,12 +5,12 @@ import { useEffect } from "react";
 
 import { checkUserSession } from "./store/user/user.action";
 import { useDispatch } from "react-redux";
-import { startFetchCategories } from "./store/categories/categories.action";
 
 import SignPage from "./routes/sign-page/sign-page.component";
 import Profile from "./routes/profile/profile.component";
 import Shop from "./routes/shop/shop.component";
 import Checkout from "./routes/checkout/checkout.component";
+import { startFetchCategories } from "./store/categories/categories.action";
 
 const App = () => {
   const dispatch = useDispatch();
