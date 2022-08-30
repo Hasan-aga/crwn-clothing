@@ -17,7 +17,7 @@ const Profile = () => {
   };
   return (
     <div>
-      <h2>Hello {currentUser ? currentUser.email : "no user"}</h2>
+      <h2>Hello {currentUser ? currentUser.displayName : "no user"}</h2>
       <ProductGroupContainer>
         {boughItemGroups.length > 0
           ? boughItemGroups.map((itemGroup) => {

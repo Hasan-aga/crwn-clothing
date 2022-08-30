@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 
-import { initializeApp } from "firebase/app";
+import { FirebaseError, initializeApp } from "firebase/app";
 import {
   getAuth,
   signInWithPopup,
@@ -9,6 +9,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  User,
+  NextOrObserver,
 } from "firebase/auth";
 import {
   doc,
@@ -19,7 +21,10 @@ import {
   writeBatch,
   query,
   getDocs,
+  DocumentSnapshot,
+  QueryDocumentSnapshot,
 } from "firebase/firestore";
+import { Category } from "../../store/categories/categories.types";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -44,16 +49,22 @@ export const signInWithPop = () => signInWithPopup(auth, provider);
 
 export const db = getFirestore();
 
+export type UserData = { createdAt: Date; displayName: string; email: string };
+
+export type AdditionalUserInfo = {
+  displayName?: string;
+};
+
 export const createUserDocumentFromAuth = async (
-  userAuth,
-  addtionaInformation = {}
-) => {
+  userAuth: User,
+  addtionaInformation = {} as AdditionalUserInfo
+): Promise<void | QueryDocumentSnapshot<UserData>> => {
   const userDocRef = doc(db, "users", userAuth.uid);
   const userData = await getDoc(userDocRef);
 
   //   if user doc exists, return the user auth info
   if (userData.exists()) {
-    return userData;
+    return userData as QueryDocumentSnapshot<UserData>;
   }
 
   // if user has no doc, create one
@@ -67,18 +78,21 @@ export const createUserDocumentFromAuth = async (
       createdAt,
       ...addtionaInformation,
     });
-    return userData;
+    return userData as QueryDocumentSnapshot<UserData>;
   } catch (error) {
     console.error("error in saving authenticated user to firestore ", error);
   }
 };
 
-export const addUserToAuthByEmailAndPassword = async (email, password) => {
+export const addUserToAuthByEmailAndPassword = async (
+  email: string,
+  password: string
+) => {
   if (!email || !password) return;
   return await createUserWithEmailAndPassword(auth, email, password);
 };
 
-export const signUserIn = async (email, password) => {
+export const signUserIn = async (email: string, password: string) => {
   try {
     const userCredentials = await signInWithEmailAndPassword(
       auth,
@@ -87,10 +101,11 @@ export const signUserIn = async (email, password) => {
     );
     return userCredentials;
   } catch (error) {
-    if (error.code === "auth/user-not-found") {
+    const firebaseError = error as FirebaseError;
+    if (firebaseError.code === "auth/user-not-found") {
       throw new Error(`no user with such credential was found!`);
     }
-    if (error.code === "auth/wrong-password")
+    if (firebaseError.code === "auth/wrong-password")
       throw new Error("Wrong password!");
     throw new Error(`failed to sign in, ${error}`);
   }
@@ -104,11 +119,11 @@ export const signUserOut = async () => {
   }
 };
 
-export const onAuthStateChangedListener = (callback) => {
+export const onAuthStateChangedListener = (callback: NextOrObserver<User>) => {
   return onAuthStateChanged(auth, callback);
 };
 
-export const getCurrentUser = () => {
+export const getCurrentUser = (): Promise<User | null> => {
   return new Promise((resolve) => {
     const unsub = onAuthStateChanged(auth, (user) => {
       unsub();
@@ -117,10 +132,14 @@ export const getCurrentUser = () => {
   });
 };
 
+export type ObjectToAdd = {
+  title: string;
+};
+
 // database
-export const addCollectionAndDocumentsToDb = async (
-  collectionKey,
-  objectsToAdd
+export const addCollectionAndDocumentsToDb = async <T extends ObjectToAdd>(
+  collectionKey: string,
+  objectsToAdd: T[]
 ) => {
   const collectionReference = collection(db, collectionKey);
   const batch = writeBatch(db);
@@ -135,9 +154,9 @@ export const addCollectionAndDocumentsToDb = async (
   }
 };
 
-export const getCategoriesAndDocuments = async () => {
+export const getCategoriesAndDocuments = async (): Promise<Category[]> => {
   const collectionReference = collection(db, "categories");
   const q = query(collectionReference);
   const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map((doc) => doc.data());
+  return querySnapshot.docs.map((doc) => doc.data() as Category);
 };

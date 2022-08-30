@@ -5,8 +5,8 @@ import {
   ProductText,
 } from "./product-card.style.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../store/cart/cart-action.js";
-import { selectCartProducts } from "../../store/cart/cart.selector.js";
+import { addToCart } from "../../store/cart/cart-action";
+import { selectCartProducts } from "../../store/cart/cart.selector";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();

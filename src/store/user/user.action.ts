@@ -1,3 +1,4 @@
+import { UserData } from "../../utils/firebase/firebase.util";
 import {
   ActionNoPayload,
   ActionWithPayload,
@@ -13,7 +14,7 @@ export type UserEmailSignInStart = ActionWithPayload<
 >;
 export type UserSignInSuccess = ActionWithPayload<
   USER_TYPES.SIGN_IN_SUCCESS,
-  any
+  UserData
 >;
 export type UserSignInFail = ActionWithPayload<USER_TYPES.SIGN_IN_FAIL, Error>;
 export type UserSignOutStart = ActionNoPayload<USER_TYPES.SIGN_OUT>;
@@ -29,7 +30,7 @@ export type UserSignUpStart = ActionWithPayload<
 >;
 export type UserSignUpSuccess = ActionWithPayload<
   USER_TYPES.SIGN_UP_SUCCESS,
-  { currentUser: any; displayName: string }
+  { currentUser: UserData }
 >;
 export type UserSignUpFail = ActionWithPayload<USER_TYPES.SIGN_UP_FAIL, Error>;
 
@@ -45,7 +46,7 @@ export const emailSignInStart = (
 ): UserEmailSignInStart => {
   return { type: USER_TYPES.EMAIL_SIGN_IN_START, payload: { email, password } };
 };
-export const signInSuccess = (user: any): UserSignInSuccess => {
+export const signInSuccess = (user: UserData): UserSignInSuccess => {
   return { type: USER_TYPES.SIGN_IN_SUCCESS, payload: user };
 };
 export const signInFail = (error: Error): UserSignInFail => {
@@ -74,12 +75,12 @@ export const signUpStart = (
 };
 
 export const signUpSuccess = (
-  user: any,
+  user: UserData,
   displayName: string
 ): UserSignUpSuccess => {
   return {
     type: USER_TYPES.SIGN_UP_SUCCESS,
-    payload: { currentUser: user, displayName },
+    payload: { currentUser: user },
   };
 };
 export const signUpFail = (error: Error): UserSignUpFail => {

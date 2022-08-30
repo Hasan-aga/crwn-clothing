@@ -14,6 +14,7 @@ import {
   signOutFail,
   signOutSuccess,
   signUpFail,
+  signUpSuccess,
 } from "./user.action";
 
 function* saveUserInDatabase(userAuth, addtionalInfo = {}) {
@@ -42,6 +43,7 @@ function* getAuthUser() {
     const user = yield call(getCurrentUser);
     if (!user) return;
     yield call(saveUserInDatabase, user);
+    yield put(signInSuccess(user));
   } catch (error) {
     yield put(signInFail(error));
   }
@@ -105,6 +107,8 @@ function* processSignUp(action) {
       password
     );
     yield call(saveUserInDatabase, user, { displayName });
+    user.displayName = displayName;
+    yield put(signUpSuccess(user));
   } catch (error) {
     yield put(signUpFail(error));
   }

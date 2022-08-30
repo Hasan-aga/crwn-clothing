@@ -13,6 +13,19 @@ export type CartToggleDropdown = ActionWithPayload<
   boolean
 >;
 
+export type CartRemovePeoductFromCart = CartSetProducts | void;
+
+export type CartChangeProductQuantity = CartSetProducts | void;
+
+export type CartClearCart = ActionNoPayload<CART_TYPES.CLEAR_CART>;
+
+export type CartActionsType =
+  | CartSetProducts
+  | CartToggleDropdown
+  | CartRemovePeoductFromCart
+  | CartChangeProductQuantity
+  | CartClearCart;
+
 export const setCartProducts = (products: CartProduct[]): CartSetProducts => {
   return { type: CART_TYPES.SET_CART_PRODUCTS, payload: products };
 };
@@ -24,22 +37,15 @@ export const toggleDropdown = (dropdownStatus: boolean): CartToggleDropdown => {
   };
 };
 
-export type CartAddToCart = ActionWithPayload<
-  CART_TYPES.SET_CART_PRODUCTS,
-  ReturnType<typeof getNewProductList>
->;
-
 export const addToCart = (
   product: CartProduct,
   cartProducts: CartProduct[]
-): CartAddToCart => {
+): CartSetProducts => {
   return {
     type: CART_TYPES.SET_CART_PRODUCTS,
     payload: getNewProductList(product, cartProducts),
   };
 };
-
-export type CartRemovePeoductFromCart = CartAddToCart | undefined;
 
 export const removeProductFromCart = (
   product: CartProduct,
@@ -53,13 +59,9 @@ export const removeProductFromCart = (
   return { type: CART_TYPES.SET_CART_PRODUCTS, payload: [...newCartProducts] };
 };
 
-export type CartClearCart = ActionNoPayload<CART_TYPES.CLEAR_CART>;
-
 export const clearCart = (): CartClearCart => {
   return { type: CART_TYPES.CLEAR_CART };
 };
-
-export type CartChangeProductQuantity = CartAddToCart | undefined;
 
 export const changeProductQuantity = (
   product: CartProduct,

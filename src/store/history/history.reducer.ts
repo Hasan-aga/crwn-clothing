@@ -2,7 +2,7 @@ import { AnyAction } from "redux";
 import { HISTORY_TYPES } from "./history.types";
 
 export type HistoryState = {
-  boughtItems: any[];
+  readonly boughtItems: any[];
 };
 
 const INITIAL_HISTORY_STATE = {

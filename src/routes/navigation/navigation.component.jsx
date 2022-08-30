@@ -11,10 +11,10 @@ import {
   LinkElement,
 } from "./navigation.style.jsx";
 import { useSelector, useDispatch } from "react-redux";
-import { selectCurrentUser } from "../../store/user/user.selectors.js";
-import { selectDropdownStatus } from "../../store/cart/cart.selector.js";
-import { toggleDropdown } from "../../store/cart/cart-action.js";
-import { signOutStart } from "../../store/user/user.action.js";
+import { selectCurrentUser } from "../../store/user/user.selectors";
+import { selectDropdownStatus } from "../../store/cart/cart.selector";
+import { toggleDropdown } from "../../store/cart/cart-action";
+import { signOutStart } from "../../store/user/user.action";
 
 const Navigation = () => {
   const dispatch = useDispatch();

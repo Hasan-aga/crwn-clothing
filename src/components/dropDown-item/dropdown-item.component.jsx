@@ -5,9 +5,9 @@ import { CartItemContainer } from "./dropdown-item.style.jsx";
 import {
   changeProductQuantity,
   removeProductFromCart,
-} from "../../store/cart/cart-action.js";
+} from "../../store/cart/cart-action";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCartProducts } from "../../store/cart/cart.selector.js";
+import { selectCartProducts } from "../../store/cart/cart.selector";
 
 const DropdownItem = ({ item, checkoutGrid }) => {
   const dispatch = useDispatch();
