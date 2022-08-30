@@ -19,11 +19,6 @@ export type CategoriesFetchFail = ActionWithPayload<
   Error
 >;
 
-export type CategoryActionsType =
-  | CategoriesFetchStart
-  | CategoriesFetchSuccess
-  | CategoriesFetchFail;
-
 export const startFetchCategories = (): CategoriesFetchStart => {
   return createAction(CATEGORIES_TYPES.FETCHING_CURRENT_CATEGORIES);
 };

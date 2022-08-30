@@ -1,10 +1,18 @@
+import { AnyAction } from "redux";
 import { HISTORY_TYPES } from "./history.types";
+
+export type HistoryState = {
+  boughtItems: any[];
+};
 
 const INITIAL_HISTORY_STATE = {
   boughtItems: [],
 };
 
-export const historyReducer = (state = INITIAL_HISTORY_STATE, action) => {
+export const historyReducer = (
+  state: HistoryState = INITIAL_HISTORY_STATE,
+  action: AnyAction
+): HistoryState => {
   const { type, payload } = action;
 
   switch (type) {

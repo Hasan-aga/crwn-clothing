@@ -9,7 +9,7 @@ import { rootSaga } from "./root-saga";
 const sagaMiddleware = createSagaMiddleware(rootSaga);
 
 const middleWares = [
-  process.env.NODE_ENV === "none" && logger,
+  process.env.NODE_ENV === "development" && logger,
   sagaMiddleware,
 ].filter(Boolean);
 
@@ -21,11 +21,12 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const composeEnhancer =
-  (process.env.NODE_ENV !== "production" &&
-    window &&
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
-  compose;
+// const composeEnhancer =
+//   (process.env.NODE_ENV !== "production" &&
+//     window &&
+//     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+//   compose;
+const composeEnhancer = compose;
 
 const composedEnhancers = composeEnhancer(applyMiddleware(...middleWares));
 
