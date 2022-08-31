@@ -1,15 +1,9 @@
-import "./navigation.style";
 import { Outlet } from "react-router-dom";
 import { Fragment } from "react";
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
-import {
-  NavBar,
-  LogoContainer,
-  Links,
-  LinkElement,
-} from "./navigation.style.jsx";
+import { NavBar, LogoContainer, Links, LinkElement } from "./navigation.style";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser } from "../../store/user/user.selectors";
 import { selectDropdownStatus } from "../../store/cart/cart.selector";

@@ -3,7 +3,7 @@ import { BasicButton } from "./custom-button.style";
 import { ButtonHTMLAttributes, FC } from "react";
 
 export type ButtonProps = {
-  label?: string;
+  label?: any;
   productButton?: boolean;
   signUpButton?: boolean;
   signInGoogleButton?: boolean;
