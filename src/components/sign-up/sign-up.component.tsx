@@ -1,10 +1,6 @@
 import "./sign-up.style.scss";
-import { useEffect, useState } from "react";
-import {
-  addUserToAuthByEmailAndPassword,
-  createUserDocumentFromAuth,
-  auth,
-} from "../../utils/firebase/firebase.util";
+import { FormEvent, ChangeEvent, useEffect, useState } from "react";
+
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 import { useDispatch, useSelector } from "react-redux";
@@ -35,13 +31,12 @@ const SignupForm = () => {
     setFormHint("Sign up with Email and Password:");
   };
 
-  const handleForm = (event) => {
+  const handleForm = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    formFields[name] = value;
-    setFormFields({ ...formFields });
+    setFormFields({ ...formFields, [name]: value });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     resetForm();
@@ -52,7 +47,7 @@ const SignupForm = () => {
 
   const handleSignInError = () => {
     if (userError) {
-      setFormHint(`${userError.code}`);
+      setFormHint(`${userError}`);
       return;
     }
     if (!userError && currentUser) navigateTo("/greet");
@@ -82,7 +77,7 @@ const SignupForm = () => {
           onChange={handleForm}
           value={formFields.displayName}
           label="Display Name"
-          minLength="5"
+          minLength={4}
         />
 
         <FormInput
@@ -101,7 +96,7 @@ const SignupForm = () => {
           onChange={handleForm}
           value={formFields.password}
           label="Password"
-          minLength="6"
+          minLength={6}
         />
 
         <FormInput
