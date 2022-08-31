@@ -19,7 +19,7 @@ const defaultFormFields = {
 };
 
 const SignupForm = () => {
-  const userError = useSelector(selectUserSignUpError);
+  const userSignupError = useSelector(selectUserSignUpError);
   const currentUser = useSelector(selectCurrentUser);
   const navigateTo = useNavigate();
   const dispatch = useDispatch();
@@ -46,16 +46,16 @@ const SignupForm = () => {
   };
 
   const handleSignInError = () => {
-    if (userError) {
-      setFormHint(`${userError}`);
+    if (userSignupError) {
+      setFormHint(`${userSignupError}`);
       return;
     }
-    if (!userError && currentUser) navigateTo("/greet");
+    if (!userSignupError && currentUser) navigateTo("/greet");
   };
 
   useEffect(() => {
     handleSignInError();
-  }, [userError, currentUser]);
+  }, [userSignupError, currentUser]);
 
   return (
     <div className="sign-form">
