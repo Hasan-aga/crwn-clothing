@@ -10,6 +10,7 @@ import {
   selectCurrentUser,
   selectUserSignUpError,
 } from "../../store/user/user.selectors";
+import { AuthError } from "firebase/auth";
 
 const defaultFormFields = {
   displayName: "",
@@ -47,7 +48,8 @@ const SignupForm = () => {
 
   const handleSignInError = () => {
     if (userSignupError) {
-      setFormHint(`${userSignupError}`);
+      const errorMessage = (userSignupError as AuthError).code.split("/")[1];
+      setFormHint(errorMessage);
       return;
     }
     if (!userSignupError && currentUser) navigateTo("/greet");
