@@ -1,4 +1,4 @@
-import "./navigation.style.jsx";
+import "./navigation.style";
 import { Outlet } from "react-router-dom";
 import { Fragment } from "react";
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";

@@ -8,8 +8,12 @@ import {
 } from "../../store/categories/categories.selector";
 import Spinner from "../../components/spinner/spinner.component";
 
+type CategoryRouteParameters = {
+  category: string;
+};
+
 const Category = () => {
-  const { category } = useParams();
+  const { category } = useParams() as CategoryRouteParameters;
   const categoryMap = useSelector(selectCategoriesMap);
   const isFetchingCategories = useSelector(selectCategoriesAreFetching);
   const [currentCategoryProducts, setCurrentCategoryProducts] = useState(
