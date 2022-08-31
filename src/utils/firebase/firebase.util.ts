@@ -115,7 +115,7 @@ export const signUserOut = async () => {
   try {
     await signOut(auth);
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 };
 

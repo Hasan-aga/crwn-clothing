@@ -1,3 +1,4 @@
+import { User } from "firebase/auth";
 import { UserData } from "../../utils/firebase/firebase.util";
 import {
   ActionNoPayload,
@@ -74,10 +75,7 @@ export const signUpStart = (
   };
 };
 
-export const signUpSuccess = (
-  user: UserData,
-  displayName: string
-): UserSignUpSuccess => {
+export const signUpSuccess = (user: UserData): UserSignUpSuccess => {
   return {
     type: USER_TYPES.SIGN_UP_SUCCESS,
     payload: { currentUser: user },
