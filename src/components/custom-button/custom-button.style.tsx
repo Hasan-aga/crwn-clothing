@@ -1,5 +1,6 @@
 import { css } from "styled-components";
 import styled from "styled-components";
+import { ButtonProps } from "./custom-button.component";
 
 export const BasicButton = styled.button`
   background-color: #f7f7f7;
@@ -17,7 +18,7 @@ export const BasicButton = styled.button`
     color: #f7f7f7;
   }
 
-  ${(props) =>
+  ${(props: ButtonProps) =>
     props.productButton &&
     css`
       position: absolute;
@@ -38,7 +39,7 @@ export const BasicButton = styled.button`
       }
     `}
 
-  ${(props) =>
+  ${(props: ButtonProps) =>
     props.signUpButton &&
     css`
       background-color: #444;
@@ -47,7 +48,7 @@ export const BasicButton = styled.button`
       color: #f7f7f7;
       font-weight: 700;
       font-size: 16px;
-      &:hover {
+      &:hover {-
         cursor: pointer;
         background-color: #f7f7f7;
         outline: 1px solid #444;
@@ -55,7 +56,7 @@ export const BasicButton = styled.button`
       }
     `}
 
-  ${(props) =>
+  ${(props: ButtonProps) =>
     props.signInGoogleButton &&
     css`
       background-color: #f87575;
