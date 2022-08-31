@@ -15,8 +15,7 @@ const selectCategoriesArray = createSelector(
 );
 export const selectCategoriesMap = createSelector(
   [selectCategoriesArray],
-  (categoriesArray): CategoriesMap | null => {
-    if (!categoriesArray) return null;
+  (categoriesArray): CategoriesMap => {
     return categoriesArray.reduce((acc, { title, items }) => {
       acc[title.toLowerCase()] = items;
       return acc;
