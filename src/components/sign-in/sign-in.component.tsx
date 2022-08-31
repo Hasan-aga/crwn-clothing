@@ -1,11 +1,7 @@
 import CustomButton from "../custom-button/custom-button.component";
 import FormInput from "../form-input/form-input.component";
-import { useState } from "react";
-import {
-  createUserDocumentFromAuth,
-  signInWithPop,
-  signUserIn,
-} from "../../utils/firebase/firebase.util";
+import { ChangeEvent, FormEvent, useState } from "react";
+
 import "./sign-in.style.scss";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -19,7 +15,13 @@ import {
 } from "../../store/user/user.selectors";
 import { useEffect } from "react";
 
-const defaultFormFields = {
+type FormFieldType = {
+  email: string;
+  password: string;
+  confirmPassword: string;
+};
+
+const defaultFormFields: FormFieldType = {
   email: "",
   password: "",
   confirmPassword: "",
@@ -37,9 +39,9 @@ const SignIn = () => {
     setFormFields(defaultFormFields);
   };
 
-  const handleForm = (event) => {
+  const handleForm = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    formFields[name] = value;
+    formFields[name as keyof FormFieldType] = value;
     setFormFields({ ...formFields });
   };
 
@@ -51,7 +53,7 @@ const SignIn = () => {
     if (!userError && currentUser) navigateTo("/greet");
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     setFormHint("Sign in with Email and password:");
     event.preventDefault();
     // try {

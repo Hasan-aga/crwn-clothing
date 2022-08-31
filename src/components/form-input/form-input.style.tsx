@@ -6,7 +6,11 @@ const shrinkLabel = `    bottom: 20px;
     color: #666;
     letter-spacing: 1.5;`;
 
-export const FormInputGroup = styled.div`
+export type FormInputGroupProps = {
+  shrink?: boolean;
+};
+
+export const FormInputGroup = styled.div<FormInputGroupProps>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -35,17 +39,17 @@ export const FormInputGroup = styled.div`
       ${shrinkLabel}
     }
   }
+`;
 
-  .form-input-label {
-    pointer-events: none;
-    font-size: 20px;
-    color: #555;
-    letter-spacing: 0.9;
-    text-transform: uppercase;
-    position: absolute;
-    bottom: -5px;
-    transition: all 200ms;
-  }
+export const FormInputLabel = styled(FormInputGroup)`
+  pointer-events: none;
+  font-size: 20px;
+  color: #555;
+  letter-spacing: 0.9;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: -5px;
+  transition: all 200ms;
 `;
 // @mixin shrink-label {
 //   bottom: 20px;
