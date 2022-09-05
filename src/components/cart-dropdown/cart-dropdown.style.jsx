@@ -24,6 +24,9 @@ export const DropDown = styled.div`
   top: 90px;
   right: 40px;
   z-index: 5;
+  @media screen and (max-width: 800px) {
+    right: 15px;
+  }
   .empty-message {
     font-size: 18px;
     margin: 50px auto;

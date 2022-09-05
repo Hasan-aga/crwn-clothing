@@ -1,7 +1,14 @@
 import styled from "styled-components";
 import CustomButton from "../custom-button/custom-button.component";
 
-export const ProductButton = styled(CustomButton)``;
+export const ProductButton = styled(CustomButton)`
+  @media screen and (max-width: 800px) {
+    opacity: 100%;
+    padding: 5px;
+    bottom: 40px;
+    width: 90%;
+  }
+`;
 
 export const ProductText = styled.div`
   display: flex;
@@ -17,7 +24,9 @@ export const ProductCardStyle = styled.div`
   height: fit-content;
   margin-bottom: 30px;
   position: relative;
-
+  @media screen and (max-width: 800px) {
+    width: 100%;
+  }
   &:hover ${ProductButton} {
     opacity: 60%;
     width: 80%;
@@ -27,6 +36,9 @@ export const ProductCardStyle = styled.div`
     width: 100%;
     object-fit: cover;
     overflow: hidden;
+    @media screen and (max-width: 800px) {
+      height: 400px;
+    }
   }
 `;
 

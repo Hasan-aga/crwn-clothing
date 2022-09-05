@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
-import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
@@ -11,6 +10,8 @@ import { persistor, store } from "./store/store";
 import { Elements } from "@stripe/react-stripe-js";
 import { stripePromis } from "./utils/stripe/stripe.utils";
 
+import { GlobalStyle } from "./global.style";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -18,6 +19,7 @@ root.render(
       <PersistGate loading="fetching......." persistor={persistor}>
         <BrowserRouter>
           <Elements stripe={stripePromis}>
+            <GlobalStyle />
             <App />
           </Elements>
         </BrowserRouter>

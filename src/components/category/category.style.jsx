@@ -11,6 +11,11 @@ export const CategoryCard = styled.div`
   margin: 0 7.5px 15px;
   overflow: hidden;
 
+  @media screen and (max-width: 800px) {
+    min-width: 150px;
+    height: 200px;
+  }
+
   &:hover {
     cursor: pointer;
 
@@ -66,6 +71,15 @@ export const CategoryCard = styled.div`
     p {
       font-weight: lighter;
       font-size: 16px;
+    }
+
+    @media screen and (max-width: 800px) {
+      h2 {
+        font-size: 20px;
+      }
+      p {
+        font-size: 10px;
+      }
     }
   }
 `;

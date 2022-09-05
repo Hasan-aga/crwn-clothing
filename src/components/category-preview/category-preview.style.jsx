@@ -7,6 +7,9 @@ export const CategoryTitle = styled.div`
     font-size: 80px;
     text-transform: uppercase;
     line-height: 50px;
+    @media screen and (max-width: 800px) {
+      font-size: 40px;
+    }
   }
 `;
 
@@ -16,6 +19,10 @@ export const ShopProducts = styled.div`
   row-gap: 50px;
   column-gap: 10px;
   padding: 10px;
+  @media screen and (max-width: 800px) {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 10px;
+  }
 `;
 
 // .category-title {
