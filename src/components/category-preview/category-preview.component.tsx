@@ -27,9 +27,12 @@ const CategoryPreview = ({
         )}
       </CategoryTitle>
       <ShopProducts>
-        {products.slice(0, previewIndex).map((product) => (
-          <ProductCard product={product} key={product.id + product.name} />
-        ))}
+        {products &&
+          products
+            .slice(0, previewIndex)
+            .map((product) => (
+              <ProductCard product={product} key={product.id + product.name} />
+            ))}
       </ShopProducts>
     </Fragment>
   );
