@@ -11,6 +11,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { stripePromis } from "./utils/stripe/stripe.utils";
 
 import { GlobalStyle } from "./global.style";
+import { register } from "./serviceWorkerRegistration";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -27,6 +28,9 @@ root.render(
     </Provider>
   </React.StrictMode>
 );
+
+// register service worker for PWA
+register();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
