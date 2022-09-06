@@ -24,7 +24,7 @@ const CartDropdown = (props: CartDropdownProps) => {
 
   const cartProducts = useSelector(selectCartProducts);
   return (
-    <div ref={ref} className={props.active ? "" : "hide"}>
+    <div role="dropdown-menu" ref={ref} className={props.active ? "" : "hide"}>
       <DropDown className="dropdown-menu">
         {cartProducts.length === 0 ? (
           <EmptyCart>

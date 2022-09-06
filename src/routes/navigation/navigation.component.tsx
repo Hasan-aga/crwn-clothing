@@ -52,7 +52,7 @@ const Navigation = () => {
             )}
           </li>
           <li>
-            <div onClick={toggleDropdownMenu}>
+            <div role="dropdown-button" onClick={toggleDropdownMenu}>
               <CartIcon />
             </div>
             <CartDropdown active={dropdownStatus} />
