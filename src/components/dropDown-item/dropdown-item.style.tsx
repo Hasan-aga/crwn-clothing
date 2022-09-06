@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import { css } from "styled-components";
 
+export type CartItemContainerProps = {
+  checkoutItem?: boolean;
+};
+
 export const CartItemContainer = styled.div`
   display: flex;
   row-gap: 20px;
@@ -52,7 +56,7 @@ export const CartItemContainer = styled.div`
     object-fit: cover;
   }
 
-  ${(props) =>
+  ${(props: CartItemContainerProps) =>
     props.checkoutItem &&
     css`
         border-bottom: 1px solid #888;

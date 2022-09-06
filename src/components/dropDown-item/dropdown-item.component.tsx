@@ -1,23 +1,33 @@
-import "./dropdown-item.style.jsx";
+import "./dropdown-item.style";
 import { ReactComponent as Trash } from "../../assets/trash.svg";
 import Counter from "../counter/counter.component";
-import { CartItemContainer } from "./dropdown-item.style.jsx";
+import { CartItemContainer } from "./dropdown-item.style";
 import {
   changeProductQuantity,
   removeProductFromCart,
 } from "../../store/cart/cart-action";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCartProducts } from "../../store/cart/cart.selector";
+import { CartProduct } from "../../store/cart/cart.types.js";
+import { AnyAction } from "redux";
 
-const DropdownItem = ({ item, checkoutGrid }) => {
-  const dispatch = useDispatch();
+export type DropdownProps = {
+  item: CartProduct;
+  checkoutGrid?: boolean;
+};
+
+const DropdownItem = ({ item, checkoutGrid }: DropdownProps) => {
+  const dispatch = useDispatch() as (arg: AnyAction | void) => AnyAction;
   const existingCartProducts = useSelector(selectCartProducts);
-  const increment = () =>
+  const increment = () => {
     dispatch(changeProductQuantity(item, existingCartProducts));
-  const decrement = () =>
+  };
+  const decrement = () => {
     dispatch(changeProductQuantity(item, existingCartProducts, false));
-  const removeProductHandler = () =>
+  };
+  const removeProductHandler = () => {
     dispatch(removeProductFromCart(item, existingCartProducts));
+  };
   return checkoutGrid ? (
     <CartItemContainer checkoutItem>
       <img alt="item.name" src={item.imageUrl} />
@@ -33,11 +43,7 @@ const DropdownItem = ({ item, checkoutGrid }) => {
           </span>
           <span className="item-info">&#10539; </span>
           <span className="item-info">${item.price}</span>
-          <Trash
-            className="trash-icon"
-            onClick={removeProductHandler}
-            title="Delete"
-          />
+          <Trash className="trash-icon" onClick={removeProductHandler} />
         </div>
       </div>
     </CartItemContainer>
@@ -56,11 +62,7 @@ const DropdownItem = ({ item, checkoutGrid }) => {
           </span>
           <span className="item-info">&#10539; </span>
           <span className="item-info">${item.price}</span>
-          <Trash
-            className="trash-icon"
-            onClick={removeProductHandler}
-            title="Delete"
-          />
+          <Trash className="trash-icon" onClick={removeProductHandler} />
         </div>
       </div>
     </CartItemContainer>

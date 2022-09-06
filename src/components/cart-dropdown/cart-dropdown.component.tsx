@@ -2,14 +2,18 @@ import CustomButton from "../custom-button/custom-button.component";
 import { Fragment } from "react";
 import DropdownItem from "../dropDown-item/dropdown-item.component";
 import { Link } from "react-router-dom";
-import { DropDown, EmptyCart } from "./cart-dropdown.style.jsx";
+import { DropDown, EmptyCart } from "./cart-dropdown.style";
 import { selectCartProducts } from "../../store/cart/cart.selector";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleDropdown } from "../../store/cart/cart-action";
 import { useCloseDropdownOnOutsideClick } from "../../custom-hooks/useCloseDropdownOnOutsideClick";
 import "./hide.style.scss";
 
-const CartDropdown = (props) => {
+export type CartDropdownProps = {
+  active: boolean;
+};
+
+const CartDropdown = (props: CartDropdownProps) => {
   const dispatch = useDispatch();
 
   const closeDropdown = () => {
