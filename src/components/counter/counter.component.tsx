@@ -1,8 +1,15 @@
 import { ReactComponent as UpArrow } from "../../assets/up.svg";
 import { ReactComponent as DownArrow } from "../../assets/down.svg";
 import { CounterContainer } from "./counter.style";
+import { CartProduct } from "../../store/cart/cart.types";
 
-const Counter = (props) => {
+export type CounterProps = {
+  item: CartProduct;
+  incrementor: () => void;
+  decrementor: () => void;
+};
+
+const Counter = (props: CounterProps) => {
   const { quantity } = props.item;
   const incrementor = props.incrementor;
   const decrementor = props.decrementor;
