@@ -1,5 +1,10 @@
 import { CategoryCard } from "./category.style";
-const Category = ({ id, title, imageUrl }) => {
+type CategoryProps = {
+  id: number;
+  title: string;
+  imageUrl: string;
+};
+const Category = ({ id, title, imageUrl }: CategoryProps) => {
   return (
     <CategoryCard>
       <div
