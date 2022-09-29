@@ -24,7 +24,7 @@ type StyleType = {
 
 type CheckmarkProps = {
   size: keyof PredefinedSizeMapType;
-  color: `#${string}`;
+  color?: `#${string}`;
 };
 
 export function Checkmark({ size, color }: CheckmarkProps) {
