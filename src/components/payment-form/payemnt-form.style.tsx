@@ -1,3 +1,4 @@
+import { FormEvent, FormEventHandler } from "react";
 import styled from "styled-components";
 import { SpinnerContainer } from "../spinner/spinner.styles";
 
@@ -16,7 +17,11 @@ export const PaymentFormContainer = styled.div`
   padding: 20px 10px;
 `;
 
-export const FormContainer = styled.form`
+export type FormContainerProps = {
+  onSubmit: FormEventHandler<HTMLFormElement>;
+};
+
+export const FormContainer = styled.form<FormContainerProps>`
   min-width: 500px;
   display: flex;
   flex-direction: column;

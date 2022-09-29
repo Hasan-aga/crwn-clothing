@@ -5,7 +5,7 @@ import {
   PaymentFormContainer,
   SmallSpinner,
 } from "./payemnt-form.style";
-import { useState } from "react";
+import { useState, FormEventHandler } from "react";
 import {
   selectCartProducts,
   selectCartTotal,
@@ -16,7 +16,7 @@ import { clearCart } from "../../store/cart/cart-action";
 import { saveCurrentCartToHistory } from "../../store/history/history.actions";
 import { useNavigate } from "react-router-dom";
 import { selectHistoryBoughtItems } from "../../store/history/history.selector";
-import { Checkmark } from "react-checkmark";
+import { Checkmark } from "../checkmark/checkmark";
 
 const PaymentForm = () => {
   const stripe = useStripe();
@@ -32,7 +32,7 @@ const PaymentForm = () => {
   const existingHistoryProducts = useSelector(selectHistoryBoughtItems);
   const navigateTo = useNavigate();
 
-  const paymentHandler = async (e) => {
+  const paymentHandler: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     if (!stripe || !elements) {
       return;
@@ -51,27 +51,30 @@ const PaymentForm = () => {
       paymentIntent: { client_secret },
     } = response;
 
-    const paymentResult = await stripe.confirmCardPayment(client_secret, {
-      payment_method: {
-        card: elements.getElement(CardElement),
-        billing_details: {
-          name: currentUser ? currentUser.email : "Guest",
+    const cardElement = elements.getElement(CardElement);
+    if (cardElement) {
+      const paymentResult = await stripe.confirmCardPayment(client_secret, {
+        payment_method: {
+          card: cardElement,
+          billing_details: {
+            name: currentUser ? currentUser.email : "Guest",
+          },
         },
-      },
-    });
+      });
 
-    if (paymentResult.error) {
-      setIsMakingPayment(false);
-      alert("Error ", paymentResult.error);
-    } else {
-      if (paymentResult.paymentIntent.status === "succeeded") {
+      if (paymentResult.error) {
         setIsMakingPayment(false);
-        setIsPaymentSuccessful(true);
-        alert("Payment Successful");
-        dispatch(
-          saveCurrentCartToHistory(cartProducts, existingHistoryProducts)
-        );
-        dispatch(clearCart());
+        alert(`Error  ${paymentResult.error}`);
+      } else {
+        if (paymentResult.paymentIntent.status === "succeeded") {
+          setIsMakingPayment(false);
+          setIsPaymentSuccessful(true);
+          alert("Payment Successful");
+          dispatch(
+            saveCurrentCartToHistory(cartProducts, existingHistoryProducts)
+          );
+          dispatch(clearCart());
+        }
       }
     }
   };
