@@ -1,11 +1,14 @@
+import { CartProduct } from "../../store/cart/cart.types";
 import { BoughtProductsList, VerticalBox } from "./bought-product-list.style";
-
-const BoughtProductList = ({ products }) => {
-  if (!products) return;
+type BoughtProductListProps = {
+  products: CartProduct[];
+};
+const BoughtProductList = ({ products }: BoughtProductListProps) => {
+  if (!products) return <></>;
   return (
     <div>
       {products.map((item) => (
-        <BoughtProductsList id={item.id}>
+        <BoughtProductsList key={item.id}>
           <VerticalBox>
             <h4>{item.name}</h4>
             <span>

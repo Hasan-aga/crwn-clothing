@@ -10,7 +10,7 @@ import {
 const Profile = () => {
   const currentUser = useSelector(selectCurrentUser);
   const boughItemGroups = useSelector(selectHistoryBoughtItems);
-  const options = {
+  const options: Intl.DateTimeFormatOptions = {
     day: "numeric",
     month: "long",
     year: "numeric",
@@ -29,7 +29,7 @@ const Profile = () => {
                     )}
                   </h3>
                   <BoughtProductList
-                    id={itemGroup.date + 1}
+                    key={itemGroup.date + 1}
                     products={itemGroup.boughtTogether}
                   />
                 </BoughtProductListContainer>
