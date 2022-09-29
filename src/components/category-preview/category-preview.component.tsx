@@ -1,12 +1,12 @@
+import "./category-preview.style.jsx";
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import ProductCard from "../product-card/product-card.component";
-import { CategoryTitle, ShopProducts } from "./category-preview.style";
-import { CategoryItem } from "../../store/categories/categories.types.js";
+import { CategoryTitle, ShopProducts } from "./category-preview.style.jsx";
 
 type CategoryPreviewProps = {
   title: string;
-  products: CategoryItem[];
+  products: any[];
   previewIndex?: number;
 };
 

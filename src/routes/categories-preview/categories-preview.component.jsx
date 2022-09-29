@@ -20,7 +20,7 @@ const CategoriesPreview = () => {
             key={title}
             title={title}
             products={products}
-            previewIndex={4}
+            previewIndex="4"
           />
         );
       })}
