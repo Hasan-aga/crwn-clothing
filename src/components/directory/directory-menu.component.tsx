@@ -31,15 +31,19 @@ const categories = [
   },
 ];
 const CategoryMenu = () => {
-  return categories.map((cat) => (
-    <Link to={`shop/${cat.title}`} key={cat.id + cat.title}>
-      <Category
-        id={cat.id}
-        title={cat.title}
-        imageUrl={cat.imageUrl}
-      ></Category>
-    </Link>
-  ));
+  return (
+    <>
+      {categories.map((cat) => (
+        <Link to={`shop/${cat.title}`} key={cat.id + cat.title}>
+          <Category
+            id={cat.id}
+            title={cat.title}
+            imageUrl={cat.imageUrl}
+          ></Category>
+        </Link>
+      ))}
+    </>
+  );
 };
 
 export default CategoryMenu;
