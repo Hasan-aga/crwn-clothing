@@ -1,18 +1,23 @@
-import "./product-card.style.jsx";
 import {
   ProductButton,
   ProductCardStyle,
   ProductText,
-} from "./product-card.style.jsx";
+} from "./product-card.style";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../store/cart/cart-action";
 import { selectCartProducts } from "../../store/cart/cart.selector";
+import { CategoryItem } from "../../store/categories/categories.types.js";
+import { CartProduct } from "../../store/cart/cart.types.js";
 
-const ProductCard = ({ product }) => {
+type ProductCardProps = {
+  product: CategoryItem;
+};
+const ProductCard = ({ product }: ProductCardProps) => {
   const dispatch = useDispatch();
   const existingProducts = useSelector(selectCartProducts);
   const addProductToCart = () => {
-    dispatch(addToCart(product, existingProducts));
+    const newProduct: CartProduct = { ...product, quantity: 0 };
+    dispatch(addToCart(newProduct, existingProducts));
   };
 
   return (
