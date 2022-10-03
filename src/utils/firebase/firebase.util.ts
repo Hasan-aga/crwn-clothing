@@ -4,6 +4,7 @@ import { FirebaseError, initializeApp } from "firebase/app";
 import {
   getAuth,
   signInWithPopup,
+  signInWithRedirect,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -46,6 +47,7 @@ provider.setCustomParameters({
 
 export const auth = getAuth();
 export const signInWithPop = () => signInWithPopup(auth, provider);
+export const signInWithNewPage = () => signInWithRedirect(auth, provider);
 
 export const db = getFirestore();
 

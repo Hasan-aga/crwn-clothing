@@ -5,6 +5,7 @@ import {
   addUserToAuthByEmailAndPassword,
   createUserDocumentFromAuth,
   getCurrentUser,
+  signInWithNewPage,
   signInWithPop,
   signUserIn,
   signUserOut,
@@ -60,7 +61,7 @@ function* onCheckUserSession() {
 
 function* processGoogleSignIn() {
   try {
-    const { user } = yield* call(signInWithPop);
+    const { user } = yield* call(signInWithNewPage);
     yield* call(saveUserInDatabase, user);
   } catch (error) {
     yield* put(signInFail(error as Error));
